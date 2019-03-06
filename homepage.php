@@ -35,13 +35,13 @@ if (isset($_SESSION['user'])) {//displays a welcome message if you are logged in
 
 	echo "
 		Username: <input type=\"text\" id=\"user\"><br>
-		Password: <input type=\"password\" id=\"pass\"><br>
+		Password: <input type=\"password\" id=\"password\"><br>
 		Confirm Password: <input type=\"password\" id=\"confirm\">
 		<br><br>";
 
 	echo "
 		Username: <input type=\"text\" id=\"user\"><br>
-		Password: <input type=\"password\" id=\"pass\"><br>
+		Password: <input type=\"password\" id=\"password\"><br>
 		<input class=\"button\" type=\"submit\" value=\"Login\" id=\"login\"><br>
 		</form>
 		<br>
