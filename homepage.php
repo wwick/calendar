@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Fake News</title>
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<script src="login.js"></script>
 </head>
 <body>
 <div id='main'>
@@ -33,19 +34,15 @@ if (isset($_SESSION['user'])) {//displays a welcome message if you are logged in
 } else {//if you are not logged in, creates forms to log in or create a new user
 
 	echo "
-		<form action=\"create.php\" method=\"POST\">
-		Username: <input type=\"text\" name=\"user\"><br>
-		Password: <input type=\"password\" name=\"password1\"><br>
-		Confirm Password: <input type=\"password\" name=\"password2\"><br>
-		<input class=\"button\" type=\"submit\" value=\"Create new user\"><br>
-		</form>
+		Username: <input type=\"text\" id=\"user\"><br>
+		Password: <input type=\"password\" id=\"pass\"><br>
+		Confirm Password: <input type=\"password\" id=\"confirm\">
 		<br><br>";
 
 	echo "
-		<form action=\"login.php\" method=\"POST\">
-		Username: <input type=\"text\" name=\"user\"><br>
-		Password: <input type=\"password\" name=\"password\"><br>
-		<input class=\"button\" type=\"submit\" value=\"Login\"><br>
+		Username: <input type=\"text\" id=\"user\"><br>
+		Password: <input type=\"password\" id=\"pass\"><br>
+		<input class=\"button\" type=\"submit\" value=\"Login\" id=\"login\"><br>
 		</form>
 		<br>
 		";
