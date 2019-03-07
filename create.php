@@ -56,7 +56,11 @@ if ($taken) {//if user is taken, you are redirected to create new user again
     session_start();
     $_SESSION['user'] = $user_id;
     echo json_encode(array(
-	    "success" => true
+	    "success" => true,
+	    "user" => array(
+		    "user" => $user,
+		    "user_id" => $user_id
+	    )
     ));
 }
 

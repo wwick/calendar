@@ -11,7 +11,10 @@ function create() {
 		headers: { 'content-type': 'application/json' }
 	})
 		.then(response => response.json())
-		.then(data => console.log(data.success ? "User created" : "User not created"));
+		.then(data => {
+			console.log(data.success ? "User created" : "User not created");
+			hidden(data.user.user);
+		});
 }
 
 document.addEventListener("DOMContentLoaded", function() {
