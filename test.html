@@ -13,19 +13,10 @@
 
 <script>
 
+// will want to loop over all days in month
 let user_id = 1;
 let date = "2019-03-06";
-
-// want to eventually do this for day in month
-events = fetchEvents(user_id, date);
-
-for (i in events) {
-				
-	event = newElement("p","event",events[i].title);
-	document.body.appendChild(event);
-
-}
-
+fetchEvents(user_id, date);
 
 function newElement(type, className, text) {
 	let element = document.createElement(type);
@@ -38,15 +29,20 @@ function fetchEvents(user_id, date) {
 	const php_path = 'get_events.php';
 	const data = { 'user_id': user_id, 'date': date };
 	fetch(php_path, {method: "POST", body: JSON.stringify(data)})
-		.then(function(response) {
-			return response.json();
+		.then(response => response.json())
+		.then(function(events) {
+			for (i in events) {
+				// need to format that and include time field as well    
+				event = newElement("p", "event", events[i].title);
+				document.body.appendChild(event);
+			}
 		})
 		.catch(function(error) {
 			console.log(error);
 	});
 }
 
-</script>
 
+</script>
 </body>
 </html>
