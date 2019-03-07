@@ -15,21 +15,45 @@
 
 document.addEventListener("DOMContentLoaded", get_events, false);
 
-function get_events() {
-	$user_id = 1;
+function newElement(type, classe, text) {
+	let element = document.createElement(type);
+	element.setAttribute("class",classe);
+	element.innerText = text;
+	return(element);
+}
+
+function fetchEvents() {
+	user_id = 1;
+	date = "2019-03-06";
 	const php_path = 'get_events.php';
-	fetch(php_path, {method: "POST", body: $user_id})
-	.then(response => response.json())
-	.then(function(data) {
+	const data = { 'user_id': user_id, 'date': date };
 
-		let p = document.createElement("p");
-		p.innerText = JSON.stringify(data, null, 2);
-		document.body.innerHTML = "";
-		document.body.appendChild(p);
 
-	})
-	.catch(function(error) {
-		console.log(error);
+	fetch(php_path, {method: "POST", body: JSON.stringify(date)})
+		.then(response => response.json())
+		.then(function(data) {
+
+			// let events = document.createElement("div");
+			// events.setAttribute("class","events");
+			// for (let eventData of data) {
+				
+			// 	event = newElement("div","event",eventData.title);
+			// 	event.appendChild(newElement("div","time",));
+
+
+
+			// 	eventHTML = newElement("div","event",event.title);
+
+			// }
+			p.innerText = JSON.stringify(data, null, 2);
+
+
+			document.body.innerHTML = "";
+			document.body.appendChild(p);
+
+		})
+		.catch(function(error) {
+			console.log(error);
 	});
 }
 
