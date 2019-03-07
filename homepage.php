@@ -8,6 +8,8 @@
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	<script src="login.js"></script>
 	<script src="create.js"></script>
+	<script src="hidden.js"></script>
+	<script src="show.js"></script>
 </head>
 <body>
 <div id='main'>
@@ -32,35 +34,41 @@ if (isset($_SESSION['user'])) {//displays a welcome message if you are logged in
 	$stmt->close();
 	$mysqli->close();
 
+
 } else {//if you are not logged in, creates forms to log in or create a new user
 
-	echo "
+	echo "	
+		<div class=\"hidden\">
 		Username: <input type=\"text\" id=\"new_user\"><br>
 		Password: <input type=\"password\" id=\"new_password\"><br>
 		Confirm Password: <input type=\"password\" id=\"confirm\"><br>
 		<button class=\"button\" type=\"submit\" id=\"create_btn\">Create User</button><br>
 		<br>";
 
-	echo "
+echo "
 		Username: <input type=\"text\" id=\"user\"><br>
 		Password: <input type=\"password\" id=\"password\"><br>
 		<input class=\"button\" type=\"submit\" value=\"Login\" id=\"login\"><br>
 		</form>
 		<br>
+		</div>
 		";
 
 }
 
 ?>
-<?php
+		<div class="show" style="display: none">
+		Title: <input type="text" id="event"><br>
+		Date: <input type="date" id="date"><br>
+		Time: <input type="time" id="time"><br>
+		</div>
 
-echo "<br>";
-if (isset($_SESSION['user'])) {//click these to logout  or write an article
-	echo " <a href=\"write.php\" class=\"button\">Write Story</a>\t";
-	echo "<a href=\"abort.php\" class=\"button\">Logout</a>";
-}
 
-?>
+	<div class="show" style="display: none">
+	<a href="abort.php" class="button">Logout</a>
+	</div>
+
+
 
 </div>
 

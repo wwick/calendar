@@ -12,6 +12,7 @@ function login(event) {
 	})
 		.then(response => response.json())
 		.then(data => console.log(data.success ? "You've been logged in!" : "You were not logged in "));
+	hidden();
 }
 
 document.addEventListener("DOMContentLoaded", function(){
