@@ -1,15 +1,18 @@
 <?php
 
 require 'database.php';
-$user_id = file_get_contents('php://input');
-$result = $mysqli->query("SELECT * FROM events WHERE user_id=\"{$user_id}\"");
+
+$json_str = file_get_contents('php://input');
+$json_obj = json_decode($json_str, true);
+
+$user_id = $json_obj['user_id'];
+$date = $json_obj['date'];
+
+$result = $mysqli->query("SELECT title, time FROM events WHERE user_id=\"{$user_id}\", date=\"{$date}\"");
 $rows = array();
-$i=0; 
+
 while($row = $result->fetch_assoc()) {
-	$event_id = $row['event_id'];
-	$rows[$event_id]['title'] = $row['title'];
-	$rows[$event_id]['date'] = $row['date'];
-	$rows[$event_id]['time'] = $row['time']; 
+	$rows[] = $row;
 }
 
 echo json_encode($rows);
