@@ -25,7 +25,10 @@ while($stmt->fetch()){
 
 			echo json_encode(array(
 				"success" => true,
-				"user" => array("user" => $tableUser, "user_id" => $user_id)
+				"user" => array(
+					"user" => $tableUser,
+					"user_id" => $user_id
+				)
 			));
 			exit;
 		} else {
