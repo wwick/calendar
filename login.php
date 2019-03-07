@@ -24,7 +24,8 @@ while($stmt->fetch()){
 			$_SESSION["user"] = $user_id;
 
 			echo json_encode(array(
-				"success" => true
+				"success" => true,
+				"user" => array("user" => $tableUser, "user_id" => $user_id)
 			));
 			exit;
 		} else {

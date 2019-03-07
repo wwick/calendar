@@ -11,8 +11,11 @@ function login(event) {
 		headers: { 'content-type': 'application/json' }
 	})
 		.then(response => response.json())
-		.then(data => console.log(data.success ? "You've been logged in!" : "You were not logged in "));
-	hidden();
+		.then(data => {
+			console.log(data.success ? "You've been logged in!" : "You were not logged in ");
+			console.log(data.user.user_id);
+			hidden(data.user.user);
+		});
 }
 
 document.addEventListener("DOMContentLoaded", function(){

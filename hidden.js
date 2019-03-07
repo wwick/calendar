@@ -1,4 +1,4 @@
-function hidden() {
+function hidden(user) {
 	console.log("reached");
 	var hidden = document.getElementsByClassName("hidden");
 	var i = 0;
@@ -6,6 +6,7 @@ function hidden() {
 
 		hidden[i].style.display="none";
 	}
+	document.getElementById("welcome").textContent = "Welcome " + user;
 	show();
 }
 
