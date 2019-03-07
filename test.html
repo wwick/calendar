@@ -10,20 +10,15 @@
 </head>
 <body>
 
-<?php
-
-session_start();
-
-
-?>
 
 <script>
 
 document.addEventListener("DOMContentLoaded", get_events, false);
 
 function get_events() {
+	$user_id = 1;
 	const php_path = 'get_events.php';
-	fetch(php_path)
+	fetch(php_path, {method: "POST", body: $user_id})
 	.then(response => response.json())
 	.then(function(data) {
 
@@ -37,6 +32,7 @@ function get_events() {
 		console.log(error);
 	});
 }
+
 </script>
 
 </body>
