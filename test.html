@@ -10,6 +10,13 @@
 </head>
 <body>
 
+<?php
+
+session_start();
+
+
+?>
+
 <script>
 
 document.addEventListener("DOMContentLoaded", get_events, false);
@@ -20,9 +27,8 @@ function get_events() {
 	.then(response => response.json())
 	.then(function(data) {
 
-		let str = JSON.stringify(obj, null, 2); // spacing level = 2
 		let p = document.createElement("p");
-		p.innerText = str;
+		p.innerText = JSON.stringify(data, null, 2);
 		document.body.innerHTML = "";
 		document.body.appendChild(p);
 
