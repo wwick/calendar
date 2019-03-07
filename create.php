@@ -1,9 +1,14 @@
 <?php
 //creates a new user
 require 'database.php';
-$user = $_POST["user"];
-$password1 = $_POST["password1"];
-$password2 = $_POST["password2"];
+header("Content-Type: applicaton/json");
+
+$json_str = file_get_contents('php://input');
+$json_obj = json_decode($json_str, true);
+
+$user = $json_obj['user'];
+$password1 = $json_obj["password1"];
+$password2 = $json_obj["password2"];
 if ($password1 != $password2) {//if your passwords don't match, gives you another shot to correct it
     header("Location:homepage.php");
 }
@@ -50,7 +55,9 @@ if ($taken) {//if user is taken, you are redirected to create new user again
 
     session_start();
     $_SESSION['user'] = $user_id;
-    header("Location:homepage.php");
+    echo json_encode(array(
+	    "success" => true
+    ));
 }
 
 ?>

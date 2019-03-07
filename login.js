@@ -1,9 +1,9 @@
-function loginAjax(event) {
-	const username = document.getElementById("username").value; // Get the username from the form
+function login(event) {
+	const user = document.getElementById("user").value; // Get the username from the form
 	const password = document.getElementById("password").value; // Get the password from the form
 
 	// Make a URL-encoded string for passing POST data:
-	const data = { 'username': username, 'password': password };
+	const data = { 'user': user, 'password': password };
 
 	fetch("login.php", {
 		method: 'POST',
@@ -11,7 +11,9 @@ function loginAjax(event) {
 		headers: { 'content-type': 'application/json' }
 	})
 		.then(response => response.json())
-		.then(data => console.log(data.success ? "You've been logged in!" : `You were not logged in ${data.message}`));
+		.then(data => console.log(data.success ? "You've been logged in!" : "You were not logged in "));
 }
 
-document.getElementById("login").addEventListener("click", loginAjax, false); // Bind the AJAX call to button click
+document.addEventListener("DOMContentLoaded", function(){
+	document.getElementById("login").addEventListener("click", login, false);
+}, false);// Bind the AJAX call to button click

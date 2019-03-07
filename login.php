@@ -29,8 +29,7 @@ while($stmt->fetch()){
 			exit;
 		} else {
 			echo json_encode(array(
-				"success" => false,
-				"message" => "Incorrect Username or Password"
+				"success" => false
 			));
 			exit;
 		}

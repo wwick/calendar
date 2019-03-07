@@ -7,6 +7,7 @@
 	<title>Fake News</title>
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	<script src="login.js"></script>
+	<script src="create.js"></script>
 </head>
 <body>
 <div id='main'>
@@ -34,10 +35,11 @@ if (isset($_SESSION['user'])) {//displays a welcome message if you are logged in
 } else {//if you are not logged in, creates forms to log in or create a new user
 
 	echo "
-		Username: <input type=\"text\" id=\"user\"><br>
-		Password: <input type=\"password\" id=\"password\"><br>
-		Confirm Password: <input type=\"password\" id=\"confirm\">
-		<br><br>";
+		Username: <input type=\"text\" id=\"new_user\"><br>
+		Password: <input type=\"password\" id=\"new_password\"><br>
+		Confirm Password: <input type=\"password\" id=\"confirm\"><br>
+		<button class=\"button\" type=\"submit\" id=\"create_btn\">Create User</button><br>
+		<br>";
 
 	echo "
 		Username: <input type=\"text\" id=\"user\"><br>
