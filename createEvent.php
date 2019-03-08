@@ -14,12 +14,12 @@ $time = $json_obj["time"];
 $stmt = $mysqli->prepare("insert into events (user_id, title, date, time) values ('$user_id', '$title', '$date', '$time')");
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
-	header("Location:https://www.google.com/");
 	echo json_encode(array(
 		"success" => false
 	));
 	exit;
 }
+
 $stmt->execute();
 $stmt->close();
 echo json_encode(array(
