@@ -32,7 +32,7 @@ function fetchEvents(user_id, date) {
 		.then(response => response.json())
 		.then(function(events) {
 			for (i in events) {
-				// need to format that and include time field as well    
+				// need to format this and include time field as well    
 				event = newElement("p", "event", events[i].title);
 				document.body.appendChild(event);
 			}
