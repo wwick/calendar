@@ -35,44 +35,105 @@
 <script>
 
 function createLogin() {
-	let $container = $('<div>', {'class': 'login'});
+	let $login = $('<div>', {'class': 'login'});
 
-	$container.append("Username: ");
+	$login.append("Username: ");
 	let $newUserField = $("<input>", {type: 'text', id: 'new_user'});
-	$container.append($newUserField);
-	$container.append("<br>");
+	$login.append($newUserField);
+	$login.append("<br>");
 
-	$container.append("Password: ");
+	$login.append("Password: ");
 	let $newUserField = $("<input>", {type: 'password', id: 'new_password'});
-	$container.append($newUserField);
-	$container.append("<br>");
+	$login.append($newUserField);
+	$login.append("<br>");
 
-	$container.append("Confirm Password: ");
+	$login.append("Confirm Password: ");
 	let $confirmField = $("<input>", {type: 'password', id: 'confirm'});
-	$container.append($confirmField);
-	$container.append("<br>");
+	$login.append($confirmField);
+	$login.append("<br>");
 
-	let $createButton = $("<button>", {'class':'button',type:'submit',id:'create_btn',text:'Create User'});
-	$container.append($createButton);
-	$container.append("<br>");
-	$container.append("<br>");
+	let $createButton = $("<button>", {'class':'button', type:'submit', id:'create_btn', text:'Create User'});
+	$login.append($createButton);
+	$login.append("<br>");
+	$login.append("<br>");
 
-	$container.append("Username: ");
+	$login.append("Username: ");
 	let $userField = $("<input>", {type: 'text', id: 'user'});
-	$container.append($userField);
-	$container.append("<br>");
+	$login.append($userField);
+	$login.append("<br>");
 
-	$container.append("Password: ");
+	$login.append("Password: ");
 	let $passwordField = $("<input>", {type: 'password', id: 'password'});
-	$container.append($passwordField);
-	$container.append("<br>");
+	$login.append($passwordField);
+	$login.append("<br>");
 
 	let $loginButton = $("<button>", {'class':'button', type:'submit', id:'login', text:'Login'});
 
-	$(document.body).html($container);
+	$(document.body).html($login);
+}
+
+let user_id = 1;
+let month = 3;
+let year = 2019;
+let date = new Date(year, month);
+
+
+function getNumberOfDays(date) {
+	return new Date(date.getYear(), date.getMonth()+1, 0).getDate();
+}
+
+function createCalendar(user_id, date) {
+	let $calendar = $("<div>", {'class':'calendar', text:'These are your events for the month'});
+	days_in_month = getNumberOfDays(date);
+	for (day = 1; day <= days_in_month; day++) {
+		date.setDate(day);
+		$calendar.append(fetchEvents(user_id, date));
+	}
+}
+
+function getDayName(date) {
+	switch (date.getDay()) {
+		case 0:
+			return "Sunday";
+		case 1:
+			return "Monday";
+		case 2:
+			return "Tuesday";
+		case 3:
+			return "Wednesday";
+		case 4:
+			return "Thursday";
+		case 5:
+			return "Friday";
+		case 6:
+			return "Saturday";
+	}
+	return "";
+}
+
+function fetchEvents(user_id, date) {
+	date_string = date.toString();
+	const php_path = 'get_events.php';
+	const data = { 'user_id': user_id, 'date': date_string};
+	fetch(php_path, {method: "POST", body: JSON.stringify(data)})
+		.then(response => response.json())
+		.then(function(events) {
+			
+			let $day = $("<div>", {'class':'day', text:date_string});
+			for (i in events) {				
+				event_text = events[i].title + ": " + events[i].time;
+				$event = $("<p>", {'class':'event', text:event_text});
+				$day.append($event);
+			}
+			return $day;
+		})
+		.catch(function(error) {
+			console.log(error);
+	});
 }
 
 createLogin();
+createCalendar();
 				
 </script>
 
@@ -80,7 +141,7 @@ createLogin();
 
 
 
-			<div class="show" style="display: none">
+			<!-- <div class="show" style="display: none">
 				Title: <input type="text" id="event"><br>
 				Date: <input type="date" id="date"><br>
 				Time: <input type="time" id="time"><br>
@@ -94,7 +155,7 @@ createLogin();
 
 
 
-		</div>
+		</div> -->
 
 	</body>
 </html>
