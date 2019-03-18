@@ -7,9 +7,10 @@ if(!isset($_SESSION['user'])) {
 	header("Location:calendar.html");
 }
 
+header('Content-Type:text/plain');
+
 $user_id = $_SESSION['user'];
 $date = file_get_contents('php://input');
-header("Location:".$date);
 
 $result = $mysqli->query("SELECT title, time FROM events WHERE user_id=\"{$user_id}\" AND date=\"{$date}\"");
 $rows = array();
