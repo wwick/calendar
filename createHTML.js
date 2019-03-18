@@ -92,3 +92,34 @@ function fetchEvents(user_id, date_string) {
 			console.log(error);
 		});
 }
+
+function createButtons() {
+
+	$create_event = $("<div>");
+
+	$create_event.append("Title: ");
+	let $title_field = $("<input>", {type:"text", id:"title"});
+	$create_event.append($title_field);
+	$create_event.append("<br>");
+
+	$create_event.append("Date: ");
+	let $date_field = $("<input>", {type:"text", id:"date"});
+	$create_event.append($date_field);
+	$create_event.append("<br>");
+
+	$create_event.append("Time: ");
+	let $time_field = $("<input>", {type:"text", id:"time"});
+	$create_event.append($time_field);
+	$create_event.append("<br>");
+
+	let $event_btn = $("<button>", {class:"button", type:"submit", id:"event_btn", text:"Create Event"})
+	$create_event.append($event_btn);
+
+	$(document.body).append($create_event);
+
+	let $logout = $("<div>");
+	let $logout_btn = $("<a>", {class:"button", text:"logout", href:"abort.php"});
+	$logout.append($logout_btn);
+	$(document.body).append($logout);
+
+}
