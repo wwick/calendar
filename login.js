@@ -1,4 +1,4 @@
-function login(event) {
+function login() {
 	const user = document.getElementById("user").value; // Get the username from the form
 	const password = document.getElementById("password").value; // Get the password from the form
 
@@ -14,10 +14,6 @@ function login(event) {
 		.then(data => {
 			console.log(data.success ? "You've been logged in!" : "You were not logged in ");
 			console.log(data.user.user_id);
-			createCalendar(data.user.user_id, new Date(2019, 2));
+			createCalendar(new Date());
 		});
 }
-
-document.addEventListener("DOMContentLoaded", function(){
-	document.getElementById("login").addEventListener("click", login, false);
-}, false);// Bind the AJAX call to button click
