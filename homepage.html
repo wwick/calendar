@@ -4,8 +4,9 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Fake News</title>
-		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+		<title>Calendar</title>
+		<!-- <link rel="stylesheet" type="text/css" href="stylesheet.css"> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="checkLogin.js"></script>
 		<script src="login.js"></script>
 		<script src="create.js"></script>
@@ -30,6 +31,50 @@
 				<button class="button" type="submit" id="login">Login</button><br>
 				<br>
 			</div>
+
+<script>
+
+function createLogin() {
+	let $container = $('<div>', {'class': 'login'});
+
+	$container.append("Username: ");
+	let $newUserField = $("<input>", {type: 'text', id: 'new_user'});
+	$container.append($newUserField);
+	$container.append("<br>");
+
+	$container.append("Password: ");
+	let $newUserField = $("<input>", {type: 'password', id: 'new_password'});
+	$container.append($newUserField);
+	$container.append("<br>");
+
+	$container.append("Confirm Password: ");
+	let $confirmField = $("<input>", {type: 'password', id: 'confirm'});
+	$container.append($confirmField);
+	$container.append("<br>");
+
+	let $createButton = $("<button>", {'class':'button',type:'submit',id:'create_btn',text:'Create User'});
+	$container.append($createButton);
+	$container.append("<br>");
+	$container.append("<br>");
+
+	$container.append("Username: ");
+	let $userField = $("<input>", {type: 'text', id: 'user'});
+	$container.append($userField);
+	$container.append("<br>");
+
+	$container.append("Password: ");
+	let $passwordField = $("<input>", {type: 'password', id: 'password'});
+	$container.append($passwordField);
+	$container.append("<br>");
+
+	let $loginButton = $("<button>", {'class':'button', type:'submit', id:'login', text:'Login'});
+
+	$(document.body).html($container);
+}
+
+createLogin();
+				
+</script>
 
 
 
