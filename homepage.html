@@ -73,13 +73,13 @@ function createLogin() {
 }
 
 let user_id = 1;
-let month = 3;
+let month = 2;
 let year = 2019;
 let date = new Date(year, month);
 
 
 function getNumberOfDays(date) {
-	return new Date(date.getYear(), date.getMonth()+1, 0).getDate();
+	return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
 }
 
 function createCalendar(user_id, date) {
@@ -87,9 +87,13 @@ function createCalendar(user_id, date) {
 	let days_in_month = getNumberOfDays(date);
 	for (day = 1; day <= days_in_month; day++) {
 		date.setDate(day);
-		$calendar.append(fetchEvents(user_id, date));
+//		$calendar.append("<br>");
+//		$calendar.append(fetchEvents(user_id, date));
+		fetchEvents(user_id, date);
+//		$(document.body).append(date.toString());
 	}
-	$(document.body).append($calendar);
+//	$(document.body).append($calendar);
+	fetchEvents(user_id,date);
 }
 
 function getDayName(date) {
@@ -113,24 +117,25 @@ function getDayName(date) {
 }
 
 function fetchEvents(user_id, date) {
-	date_string = date.toString();
-	const php_path = 'get_events.php';
-	const data = { 'user_id': user_id, 'date': date_string};
+	const date_string = date.toISOString().substring(0,10);
+	const php_path = "get_events.php";
+	const data = { "user_id": user_id, "date": date_string };
 	fetch(php_path, {method: "POST", body: JSON.stringify(data)})
 		.then(response => response.json())
 		.then(function(events) {
 			
 			let $day = $("<div>", {'class':'day', text:date_string});
 			for (i in events) {				
-				event_text = events[i].title + ": " + events[i].time;
-				$event = $("<p>", {'class':'event', text:event_text});
+				let event_text = events[i].title;
+				$event = $("<h3>", {'class':'event', text:event_text});
 				$day.append($event);
 			}
-			return $day;
+			//return $day;
+			$(document.body).append($day);
 		})
 		.catch(function(error) {
 			console.log(error);
-	});
+		});
 }
 
 createLogin();
