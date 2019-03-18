@@ -7,27 +7,14 @@
 		<title>Calendar</title>
 		<!-- <link rel="stylesheet" type="text/css" href="stylesheet.css"> -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="checkLogin.js"></script>
+		<!-- <script src="checkLogin.js"></script>
 		<script src="login.js"></script>
-		<script src="create.js"></script>
+		<script src="create.js"></script> -->
 		<!-- <script src="createEvent.js"> --> </script>
 
 	</head>
 	<body>
-		<!-- <div class="show" style="display: none">
-			<h1 id="welcome"></h1>
-		</div>
-		<div class="hidden">
-			Username: <input type="text" id="new_user"><br>
-			Password: <input type="password" id="new_password"><br>
-			Confirm Password: <input type="password" id="confirm"><br>
-			<button class="button" type="submit" id="create_btn">Create User</button><br>
-			<br>
-			Username: <input type="text" id="user"><br>
-			Password: <input type="password" id="password"><br>
-			<button class="button" type="submit" id="login">Login</button><br>
-			<br>
-		</div> -->
+
 
 <script>
 
@@ -35,42 +22,42 @@ function createLogin() {
 	let $login = $('<div>', {'class': 'login'});
 
 	$login.append("Username: ");
-	let $newUserField = $("<input>", {type: 'text', id: 'new_user'});
-	$login.append($newUserField);
+	let $new_user_field = $("<input>", {type: 'text', id: 'new_user'});
+	$login.append($new_user_field);
 	$login.append("<br>");
 
 	$login.append("Password: ");
-	let $newPasswordField = $("<input>", {type: 'password', id: 'new_password'});
-	$login.append($newPasswordField);
+	let $new_password_field = $("<input>", {type: 'password', id: 'new_password'});
+	$login.append($new_password_field);
 	$login.append("<br>");
 
 	$login.append("Confirm Password: ");
-	let $confirmField = $("<input>", {type: 'password', id: 'confirm'});
-	$login.append($confirmField);
+	let $confirm_field = $("<input>", {type: 'password', id: 'confirm'});
+	$login.append($confirm_field);
 	$login.append("<br>");
 
-	let $createButton = $("<button>", {'class':'button', type:'submit', id:'create_btn', text:'Create User'});
-	$login.append($createButton);
+	let $create_button = $("<button>", {'class':'button', type:'submit', id:'create_btn', text:'Create User'});
+	$login.append($create_button);
 	$login.append("<br>");
 	$login.append("<br>");
 
 	$login.append("Username: ");
-	let $userField = $("<input>", {type: 'text', id: 'user'});
-	$login.append($userField);
+	let $user_field = $("<input>", {type: 'text', id: 'user'});
+	$login.append($user_field);
 	$login.append("<br>");
 
 	$login.append("Password: ");
-	let $passwordField = $("<input>", {type: 'password', id: 'password'});
-	$login.append($passwordField);
+	let $password_field = $("<input>", {type: 'password', id: 'password'});
+	$login.append($password_field);
 	$login.append("<br>");
 
-	let $loginButton = $("<button>", {'class':'button', type:'submit', id:'login', text:'Login'});
-	$login.append($loginButton);
+	let $login_button = $("<button>", {'class':'button', type:'submit', id:'login', text:'Login'});
+	$login.append($login_button);
 
 	$(document.body).html($login);
 }
 
-//let user_id = 1;
+let user_id = 1;
 let month = 2;
 let year = 2019;
 let date = new Date(year, month);
@@ -86,10 +73,11 @@ function createCalendar(user_id, date) {
 	$(document.body).append($calendar);
 	for (day = 1; day <= days_in_month; day++) {
 		date.setDate(day);
-		//$calendar.append("<br>");
-		fetchEvents(user_id, date);
+		let date_string = date.toISOString().substring(0,10);
+		let $day_div = $("<div>", {id:date_string, 'class':'day', text:date_string});
+		$calendar.append($day_div);
+		fetchEvents(user_id, date_string);
 	}
-	//$(document.body).append($calendar);
 }
 
 function getDayName(date) {
@@ -112,42 +100,34 @@ function getDayName(date) {
 	return "";
 }
 
-function fetchEvents(user_id, date) {
-	const date_string = date.toISOString().substring(0,10);
+function fetchEvents(user_id, date_string) {
 	const php_path = "get_events.php";
 	const data = { "user_id": user_id, "date": date_string };
-	let $day = $("<div>");
 	fetch(php_path, {method: "POST", body: JSON.stringify(data)})
 		.then(response => response.json())
 		.then(function(events) {
-			
-			$day = $("<div>", {'class':'day', text:date_string});
-			for (i in events) {				
-				let event_text = events[i].title;
-				$event = $("<h3>", {'class':'event', text:event_text});
+			for (i in events) {
+				let $day = $( "#"+date_string );			
+				let event_text = events[i].title + ": " + events[i].time;
+				let $event = $("<h3>", {'class':'event', text:event_text});
 				$day.append($event);
 			}
-			console.log($day);
-			//return $day;
-			//$(document.body).append($day);
-			$( ".calendar" ).append($day);
 		})
 		.catch(function(error) {
 			console.log(error);
 		});
-	//return $day;
 }
 
 createLogin();
-//createCalendar(user_id, date);
+createCalendar(user_id, date);
 				
 </script>
 
 
 
 
-
-			<!-- <div class="show" style="display: none">
+<!-- 
+			<div class="show" style="display: none">
 				Title: <input type="text" id="event"><br>
 				Date: <input type="date" id="date"><br>
 				Time: <input type="time" id="time"><br>
@@ -158,6 +138,7 @@ createLogin();
 			<div class="show" style="display: none">
 				<a href="abort.php" class="button">Logout</a>
 			</div>
+			 -->
 
 
 
