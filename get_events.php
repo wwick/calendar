@@ -1,7 +1,7 @@
 <?php
 
 require 'database.php';
-
+session_start();
 if(!isset($_SESSION['user'])) {
 	error_log("Please Log in");
 	header("Location:calendar.html");
