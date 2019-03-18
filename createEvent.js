@@ -1,6 +1,6 @@
 function createEvent(){
 	console.log("creates reached");
-	const title = document.getElementById("event").value;
+	const title = document.getElementById("title").value;
 	const date = document.getElementById("date").value;
 	const time = document.getElementById("time").value + ":00";
 	console.log(time);
