@@ -1,4 +1,4 @@
-function create() {
+function createUser() {
 	const user = document.getElementById("new_user").value;
 	const password1 = document.getElementById("new_password").value;
 	const password2 = document.getElementById("confirm").value;
@@ -17,6 +17,4 @@ function create() {
 		});
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-	document.getElementById("create_btn").addEventListener("click", create, false);
-}, false);
+

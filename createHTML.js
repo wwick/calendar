@@ -116,7 +116,8 @@ function createButtons() {
 	$create_event.append($time_field);
 	$create_event.append("<br>");
 
-	let $event_btn = $("<button>", {class:"button", type:"submit", id:"event_btn", text:"Create Event"})
+	let $event_btn = $("<button>", {class:"button", type:"submit", id:"event_btn", text:"Create Event"});
+	$event_btn.on("click",createUser);
 	$create_event.append($event_btn);
 
 	$(document.body).append($create_event);
