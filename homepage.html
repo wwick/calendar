@@ -43,8 +43,8 @@ function createLogin() {
 	$login.append("<br>");
 
 	$login.append("Password: ");
-	let $newUserField = $("<input>", {type: 'password', id: 'new_password'});
-	$login.append($newUserField);
+	let $newPasswordField = $("<input>", {type: 'password', id: 'new_password'});
+	$login.append($newPasswordField);
 	$login.append("<br>");
 
 	$login.append("Confirm Password: ");
@@ -84,7 +84,7 @@ function getNumberOfDays(date) {
 
 function createCalendar(user_id, date) {
 	let $calendar = $("<div>", {'class':'calendar', text:'These are your events for the month'});
-	days_in_month = getNumberOfDays(date);
+	let days_in_month = getNumberOfDays(date);
 	for (day = 1; day <= days_in_month; day++) {
 		date.setDate(day);
 		$calendar.append(fetchEvents(user_id, date));
@@ -133,7 +133,7 @@ function fetchEvents(user_id, date) {
 }
 
 createLogin();
-createCalendar();
+createCalendar(user_id, date);
 				
 </script>
 
