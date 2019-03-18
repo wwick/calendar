@@ -1,23 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Calendar</title>
-		<!-- <link rel="stylesheet" type="text/css" href="stylesheet.css"> -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<!-- <script src="checkLogin.js"></script>
-		<script src="login.js"></script>
-		<script src="create.js"></script> -->
-		<!-- <script src="createEvent.js"> --> </script>
-
-	</head>
-	<body>
-
-
-<script>
-
 function createLogin() {
 	let $login = $('<div>', {'class': 'login'});
 
@@ -57,18 +37,13 @@ function createLogin() {
 	$(document.body).html($login);
 }
 
-let user_id = 1;
-let month = 2;
-let year = 2019;
-let date = new Date(year, month);
-
-
 function getNumberOfDays(date) {
 	return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
 }
 
 function createCalendar(user_id, date) {
-	let $calendar = $("<div>", {'class':'calendar', text:'These are your events for the month'});
+	let $calendar = $("<div>", {'class':'calendar'});
+	$calendar.append($("<h3>", {text:"These are your events for the month:"}))
 	let days_in_month = getNumberOfDays(date);
 	$(document.body).append($calendar);
 	for (day = 1; day <= days_in_month; day++) {
@@ -117,32 +92,3 @@ function fetchEvents(user_id, date_string) {
 			console.log(error);
 		});
 }
-
-createLogin();
-createCalendar(user_id, date);
-				
-</script>
-
-
-
-
-<!-- 
-			<div class="show" style="display: none">
-				Title: <input type="text" id="event"><br>
-				Date: <input type="date" id="date"><br>
-				Time: <input type="time" id="time"><br>
-				<button class="button" type="submit" id="event_btn">Create Event</button><br>
-			</div>
-
-
-			<div class="show" style="display: none">
-				<a href="abort.php" class="button">Logout</a>
-			</div>
-			 -->
-
-
-
-
-	</body>
-</html>
-

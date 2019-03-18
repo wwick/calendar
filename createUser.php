@@ -10,7 +10,7 @@ $user = $json_obj['user'];
 $password1 = $json_obj["password1"];
 $password2 = $json_obj["password2"];
 if ($password1 != $password2) {//if your passwords don't match, gives you another shot to correct it
-    header("Location:homepage.php");
+    header("Location:calendar.html");
 }
 $password = $password1;
 $hashedPass = password_hash($password, PASSWORD_DEFAULT);
@@ -30,7 +30,7 @@ while($stmt->fetch()){//checks if username is taken
     }
 }
 if ($taken) {//if user is taken, you are redirected to create new user again
-    echo "This username is taken. <a href=\"homepage.php\"> Try again? </a>";
+    echo "This username is taken. <a href=\"calendar.html\"> Try again? </a>";
 } else { //inserts new user into table
     $stmt->close();
     $stmt = $mysqli->prepare("insert into users (user, password) values ('$user', '$hashedPass')");

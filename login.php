@@ -14,7 +14,7 @@ $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
 $stmt = $mysqli->prepare("select user_id, user, password from users");
 if(!$stmt){
-	header("Location:homepage.php");
+	header("Location:calendar.php");
 }
 $stmt->execute();
 $stmt->bind_result($user_id, $tableUser, $tablePass);

@@ -1,13 +1,54 @@
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Calendar</title>
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Calendar</title>
+		<!-- <link rel="stylesheet" type="text/css" href="stylesheet.css"> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="createHTML.js"></script>
+		<!-- <script src="checkLogin.js"></script>
+		<script src="login.js"></script>
+		<script src="create.js"></script> -->
+		<!-- <script src="createEvent.js"> --> </script>
 
-    
-    
-</body>
+	</head>
+	<body>
+
+
+<script>
+
+let user_id = 1;
+let month = 2;
+let year = 2019;
+let date = new Date(year, month);
+
+createLogin();
+createCalendar(user_id, date);
+				
+</script>
+
+
+
+
+<!-- 
+			<div class="show" style="display: none">
+				Title: <input type="text" id="event"><br>
+				Date: <input type="date" id="date"><br>
+				Time: <input type="time" id="time"><br>
+				<button class="button" type="submit" id="event_btn">Create Event</button><br>
+			</div>
+
+
+			<div class="show" style="display: none">
+				<a href="abort.php" class="button">Logout</a>
+			</div>
+			 -->
+
+
+
+
+	</body>
 </html>
+
