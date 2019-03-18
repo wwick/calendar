@@ -95,6 +95,9 @@ function fetchEvents(date_string) {
 		.then(function(response) {
 			console.log(response);
 		})
+		.then(function(data) {
+			console.log(data);
+		})
 		.catch(function(error) {
 			console.log(error);
 		});
