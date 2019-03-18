@@ -14,7 +14,7 @@ function login(event) {
 		.then(data => {
 			console.log(data.success ? "You've been logged in!" : "You were not logged in ");
 			console.log(data.user.user_id);
-			hidden(data.user.user);
+			createCalendar(data.user.user_id, new Date(2019, 2));
 		});
 }
 

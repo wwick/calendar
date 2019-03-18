@@ -7,6 +7,5 @@ function hidden(user) {
 		hidden[i].style.display="none";
 	}
 	document.getElementById("welcome").textContent = "Welcome " + user;
-	show();
 }
 

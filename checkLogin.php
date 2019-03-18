@@ -18,7 +18,8 @@ if (!isset($_SESSION["user"])){
 	$stmt->fetch();
 	echo json_encode(array(
 		"loggedIn" => true,
-		"user" => $user_name
+		"user" => $user_name,
+		"user_id" => $_SESSION["user"]
 	));
 }
 $stmt->close();
