@@ -12,12 +12,14 @@ header('Content-Type:text/plain');
 $user_id = $_SESSION['user'];
 $date = file_get_contents('php://input');
 
-$result = $mysqli->query("SELECT title, time FROM events WHERE user_id=\"{$user_id}\" AND date=\"{$date}\"");
-$rows = array();
+echo($date);
 
-while($row = $result->fetch_assoc()) {
-	$rows[] = $row;
-}
+// $result = $mysqli->query("SELECT title, time FROM events WHERE user_id=\"{$user_id}\" AND date=\"{$date}\"");
+// $rows = array();
 
-echo json_encode($rows);
+// while($row = $result->fetch_assoc()) {
+// 	$rows[] = $row;
+// }
+
+// echo json_encode($rows);
 ?>
