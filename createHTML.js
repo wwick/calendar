@@ -80,23 +80,18 @@ function getDayName(date) {
 
 function fetchEvents(date_string) {
 	const php_path = "get_events.php";
-	fetch(php_path, {method: "POST", body: date_string})
-		// .then(response => response.json())
-		// .then(function(events) {
-		// 	let $day = $( "#"+date_string );			
-		// 	$day.empty();
-		// 	$day.text(date_string);
-		// 	for (i in events) {
-		// 		let event_text = events[i].title + ": " + events[i].time;
-		// 		let $event = $("<h3>", {'class':'event', text:event_text});
-		// 		$day.append($event);
-		// 	}
-		// })
-		.then(function(response) {
-			console.log(response);
-		})
-		.then(function(data) {
-			console.log(data);
+	const data = { 'date':date_string }
+	fetch(php_path, {method: "POST", body: JSON.stringify(data)})
+		.then(response => response.json())
+		.then(function(events) {
+			let $day = $( "#"+date_string );			
+			$day.empty();
+			$day.text(date_string);
+			for (i in events) {
+				let event_text = events[i].title + ": " + events[i].time;
+				let $event = $("<h3>", {'class':'event', text:event_text});
+				$day.append($event);
+			}
 		})
 		.catch(function(error) {
 			console.log(error);
