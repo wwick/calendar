@@ -67,6 +67,7 @@ function createLogin() {
 	$login.append("<br>");
 
 	let $loginButton = $("<button>", {'class':'button', type:'submit', id:'login', text:'Login'});
+	$login.append($loginButton);
 
 	$(document.body).html($login);
 }
@@ -88,6 +89,7 @@ function createCalendar(user_id, date) {
 		date.setDate(day);
 		$calendar.append(fetchEvents(user_id, date));
 	}
+	$(document.body).append($calendar);
 }
 
 function getDayName(date) {
