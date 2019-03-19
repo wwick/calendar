@@ -3,8 +3,10 @@ function createEvent(){
 	const title = document.getElementById("event").value;
 	const date = document.getElementById("date").value;
 	const time = document.getElementById("time").value + ":00";
+	const shared_user = document.getElementById("shared_user").value;
+
 	console.log(time);
-	const data = { 'title': title, 'date': date, 'time': time }
+	const data = { 'title': title, 'date': date, 'time': time, 'shared_user': shared_user }
 	fetch("createEvent.php", {
 		method: 'POST',
 		body: JSON.stringify(data),
