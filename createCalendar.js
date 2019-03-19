@@ -28,8 +28,6 @@ function createCalendar(date) {
 		date.setDate(day);
 		$table.append(getWeek(date));
 	}
-	date.setDate(day);
-	$table.append(getWeek(date));
 	
 	$calendar.append($table);
 
