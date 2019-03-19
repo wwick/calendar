@@ -19,10 +19,12 @@ function createCalendar(date) {
 		$head_label = $("<th>", {text:getDayName(i)});
 		$head_row.append($head_label);
 	}
+	$table.append($head_row);
 
 	$table.append(getFirstWeek(date));
+	date.setDate(8-date.getDay());
 	
-	for (let day = date.getDate(); day < (days_in_month - 6); day += 7) {
+	for (var day = date.getDate(); day < (days_in_month - 6); day += 7) {
 		date.setDate(day);
 		$table.append(getWeek(date));
 	}
@@ -64,7 +66,7 @@ function getFirstWeek(first_date) {
 	$row = $("<tr>");
 	let month = first_date.getMonth();
 	let year = first_date.getFullYear();
-	let first_day = first_date.getDate();
+	let first_day = first_date.getDay();
 	let last_day = 7 - first_day;
 
 	for (let i = 1; i < first_day; i++) {
@@ -86,7 +88,7 @@ function getLastWeek(first_date) {
 	let month = first_date.getMonth();
 	let year = first_date.getFullYear();
 	let first_day = first_date.getDate();
-	let days_in_month = getNumberOfDays(date);
+	let days_in_month = getNumberOfDays(first_date);
 
 	for (var i = 0; i < 7; i++) {
 		if ((first_day + i) <= days_in_month) {
