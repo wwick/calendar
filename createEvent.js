@@ -13,8 +13,6 @@ function createEvent(){
 	.then(response => response.json())
 	.then(data => {
 		console.log(data.success ? "Event added" : "Event not added");
+		fetchEvents(date);
 	});
 }
-// document.addEventListener("DOMContentLoaded", function() {
-// 	document.getElementById("event_btn").addEventListener("click", createEvent, false)
-// }, false);
