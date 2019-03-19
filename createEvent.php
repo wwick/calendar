@@ -32,10 +32,6 @@ if ($shared_user === ""){
 	while($stmt->fetch()){
 		$shared_user = $shared_user_id;
 	}
-	$shared_user = json_encode(array(
-		"shared_users" => $shared_user
-	));
-	//$shared_user = "{\"shared_users\": [$shared_user]}";
 
 	$stmt = $mysqli->prepare("insert into events (user_id, title, date, time, shared_users) values ('$user_id', '$title', '$date', '$time', '$shared_user')");
 	if(!$stmt){
