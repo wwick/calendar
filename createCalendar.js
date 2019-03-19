@@ -10,7 +10,6 @@ function createCalendar(date) {
     $(document.body).append($calendar);
     let month = date.getMonth();
 	let year = date.getFullYear();
-	date.setDate(1);
    
 	$table = $("<table>", {'class':'calendar_table'});
 	$head_row =$("<tr>");
@@ -21,9 +20,10 @@ function createCalendar(date) {
 	}
 	$table.append($head_row);
 
-
-
-	$table.append(getWeek(date));
+	for (let day = 1; day <= days_in_month; day += 7) {
+		date = new Date(year,month,day);
+		$table.append(getWeek(date));
+	}
 
 	$calendar.append($table);
 
@@ -51,6 +51,7 @@ function getWeek(first_date) {
 		$row.append($("<td>"));
 	}
 
+	let days_in_month = getNumberOfDays(date);
 	let start = date.getDay();
 
 	for (let i = start; i < 7; i++) {
