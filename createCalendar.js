@@ -9,16 +9,18 @@ function createCalendar(date) {
 	let days_in_month = getNumberOfDays(date);
     $(document.body).append($calendar);
     let month = date.getMonth();
-    let year = date.getFullYear();
+	let year = date.getFullYear();
+	date.setDate(1);
    
 	$table = $("<table>", {'class':'calendar_table'});
-	$head = $("<thead>");
 	$head_row =$("<tr>");
-	$head.append($head_row);
+
 	for (let day = 0; day < 7; day++) {
 		$head_label = $("<th>", {text:getDayName(day)});
 		$head_row.append($head_label);
 	}
+	$table.append($head_row);
+
 
 
 	$table.append(getWeek(date));
