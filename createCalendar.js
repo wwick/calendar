@@ -1,7 +1,3 @@
-function getNumberOfDays(date) {
-	return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
-}
-
 function createCalendar(date) {
 	$( ".calendar ").remove();
 	let $calendar = $("<div>", {'class':'calendar'});
@@ -32,7 +28,6 @@ function createCalendar(date) {
 	$calendar.append($table);
 
 
-
 	// for (let day = 1; day <= days_in_month; day++) {
 	// 	date = new Date(year,month,day);
 	// 	console.log(date.toString());
@@ -41,7 +36,6 @@ function createCalendar(date) {
 	// 	$calendar.append($day_div);
 	// 	fetchEvents(date_string);
 	// }
-		// $table.append(otherWeeks(date));
 }
 
 function getLastDayOfWeek(date) {
@@ -78,74 +72,14 @@ function getWeek(first_date) {
 	return $row;
 }
 
-// function getFirstWeek(first_date) {
-// 	$row = $("<tr>");
-// 	let month = first_date.getMonth();
-// 	let year = first_date.getFullYear();
-// 	let first_day = first_date.getDay();
-// 	let last_day = 7 - first_day;
-
-// 	for (let i = 1; i < first_day; i++) {
-// 		$row.append($("<td>"));
-// 	}
-
-// 	for (let day = first_day; day < last_day; day++) {
-// 		let date = new Date(year,month,day);
-// 		let date_string = getDateString(date);
-// 		let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
-// 		$row.append($day_box);
-// 	}
-
-// 	return $row;
-// }
-
-// function getLastWeek(first_date) {
-// 	$row = $("<tr>");
-// 	let month = first_date.getMonth();
-// 	let year = first_date.getFullYear();
-// 	let first_day = first_date.getDate();
-// 	let days_in_month = getNumberOfDays(first_date);
-
-// 	for (var i = 0; i < 7; i++) {
-// 		if ((first_day + i) <= days_in_month) {
-// 			let date = new Date(year,month,first_day+i);
-// 			let date_string = getDateString(date);
-// 			let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
-// 			$row.append($day_box);
-// 		} else {
-// 			$row.append($("<td>"));
-// 		}
-// 	}
-// 	return $row;
-// }
 
 function getDateString(date) {
 	return date.toISOString().substring(0,10);
 }
 
-
-// function otherWeeks(first_date) {
-// 	$row = $("<tr>");
-// 	let month = first_date.getMonth();
-// 	let year = first_date.getFullYear();
-// 	let day = first_date.getDate();
-
-// 	date = new Date(year,month,day);
-// 	difference  = 7 - date.getDay();
-
-// 	let days_in_month = getNumberOfDays(date);
-// 	let startWeek = 0;
-// 	let startCal =  difference + 1;
-
-// 	for (let i = startWeek; i < 7; i++){
-// 		let date = new Date(year, month, startCal);
-// 		let date_string = date.toISOString().substring(0,10);
-// 		let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
-// 		$row.append($day_box);
-// 		startCal++;
-// 	}	
-// 	return $row;
-// }
+function getNumberOfDays(date) {
+	return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
+}
 
 
 function getDayName(day) {
