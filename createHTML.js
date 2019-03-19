@@ -131,4 +131,7 @@ function createButtons() {
 	$logout.append($logout_btn);
 	$(document.body).append($logout);
 
+	document.getElementById("create_btn").addEventListener("click", createUser, false);
+	document.getElementById("event_btn").addEventListener("click", createEvent, false);
+
 }

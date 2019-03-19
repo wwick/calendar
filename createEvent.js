@@ -15,6 +15,6 @@ function createEvent(){
 		console.log(data.success ? "Event added" : "Event not added");
 	});
 }
-document.addEventListener("DOMContentLoaded", function() {
-	document.getElementById("event_btn").addEventListener("click", createEvent, false)
-}, false);
+// document.addEventListener("DOMContentLoaded", function() {
+// 	document.getElementById("event_btn").addEventListener("click", createEvent, false)
+// }, false);

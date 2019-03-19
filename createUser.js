@@ -24,7 +24,7 @@ function createUser() {
 		});
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-	document.getElementById("create_btn").addEventListener("click", createUser, false);
-});
+// document.addEventListener("DOMContentLoaded", function() {
+// 	document.getElementById("create_btn").addEventListener("click", createUser, false);
+// });
 
