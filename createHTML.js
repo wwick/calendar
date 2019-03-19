@@ -54,6 +54,7 @@ function createCalendar(date) {
 	$(document.body).append($calendar);
 	for (let day = 0; day < days_in_month; day++) {
 		date.setDate(day);
+		console.log(date.toString());
 		let date_string = date.toISOString().substring(0,10);
 		let $day_div = $("<div>", {id:date_string, 'class':'day', text:date_string});
 		$calendar.append($day_div);
@@ -87,6 +88,7 @@ function fetchEvents(date_string) {
 	fetch(php_path, {method: "POST", body: JSON.stringify(data)})
 		.then(response => response.json())
 		.then(function(events) {
+			console.log(events);
 			let $day = $( "#"+date_string );			
 			$day.empty();
 			$day.text(date_string);
