@@ -24,8 +24,8 @@ function createCalendar(date) {
 	$table.append(getWeek(date));
 	date.setDate(8-date.getDay());
 	
-	for (var day = date.getDate(); day < (days_in_month - 6); day += 7) {
-		date.setDate(day);
+	for (var day = date.getDate(); day <= days_in_month; day += 7) {
+		date = new Date(year,month,day);
 		$table.append(getWeek(date));
 	}
 	
@@ -44,20 +44,14 @@ function createCalendar(date) {
 		// $table.append(otherWeeks(date));
 }
 
-function getLastDateOfWeek(date) {
+function getLastDayOfWeek(date) {
 	let days_in_month = getNumberOfDays(date);
-	let year = date.getFullYear();
-	let month = date.getMonth();
 	let current_date = date.getDate();
-	let last_date;
-	if (current_date <= 7) {
-		last_date = 7 - current_date;
-	} else if (last_date_of_month - current_date < 6) {
-		last_date = last_date_of_month;
+	if (days_in_month - current_date < 6) {	
+		return days_in_month - current_date;
 	} else {
-		last_date = current_date + 6;
+		return 6;
 	}
-	return new Date(year, month, last_date);
 }
 
 
@@ -66,12 +60,15 @@ function getWeek(first_date) {
 	let year = first_date.getFullYear();
 	let month = first_date.getMonth();
 	let first_day = first_date.getDay();
-	let last_day = getLastDateOfWeek(first_date).getDay();
-	for (let i = 0, j = 0; i < 7; i++) {
+	let start = first_date.getDate();
+	let last_day = getLastDayOfWeek(first_date);
+	let j = 0;
+	for (let i = 0; i < 7; i++) {
 		if (i < first_day || i > last_day) {
-			$row.append("<td>");
+			let $whitespace = $("<td>");
+			$row.append($whitespace);
 		} else {
-			let date = new Date(year,month,first_day+j);
+			let date = new Date(year,month,start+j);
 			let date_string = getDateString(date);
 			let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
 			$row.append($day_box);
