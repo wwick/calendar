@@ -17,8 +17,8 @@ function createLogin() {
 	$login.append($confirm_field);
 	$login.append("<br>");
 
-	let $create_button = $("<button>", {'class':'button', type:'submit', id:'create_btn', text:'Create User'});
-	$login.append($create_button);
+	let $create_user_button = $("<button>", {'class':'button', type:'submit', id:'create_btn', text:'Create User'});
+	$login.append($create_user_button);
 	$login.append("<br>");
 	$login.append("<br>");
 
@@ -37,6 +37,9 @@ function createLogin() {
 	$login.append($login_button);
 
 	$(document.body).html($login);
+
+	document.getElementById("create_btn").addEventListener("click", createUser, false);
+
 }
 
 function getNumberOfDays(date) {
@@ -131,7 +134,6 @@ function createButtons() {
 	$logout.append($logout_btn);
 	$(document.body).append($logout);
 
-	document.getElementById("create_btn").addEventListener("click", createUser, false);
 	document.getElementById("event_btn").addEventListener("click", createEvent, false);
 
 }
