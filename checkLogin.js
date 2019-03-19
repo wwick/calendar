@@ -15,6 +15,4 @@ function checkLogin() {
 			console.log(error);
 		});
 }
-document.addEventListener("DOMContentLoaded", function(){
-	checkLogin();
-}, false);
+

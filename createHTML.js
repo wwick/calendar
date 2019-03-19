@@ -106,7 +106,7 @@ function createButtons() {
 	$create_event = $("<div>");
 
 	$create_event.append("Title: ");
-	let $title_field = $("<input>", {type:"text", id:"title"});
+	let $title_field = $("<input>", {type:"text", id:"event"});
 	$create_event.append($title_field);
 	$create_event.append("<br>");
 
