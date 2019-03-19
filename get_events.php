@@ -3,8 +3,9 @@
 require 'database.php';
 session_start();
 if(!isset($_SESSION['user'])) {
-	error_log("Please Log in");
-	header("Location:calendar.html");
+	echo json_encode(array(
+		error => "not logged in"
+	));
 }
 
 header('Content-Type: application/json');
@@ -16,7 +17,7 @@ $json_obj = json_decode($json_str, true);
 $date = $json_obj['date'];
 $user_id = $_SESSION['user'];
 
-$result = $mysqli->query("SELECT title, time FROM events WHERE user_id=\"{$user_id}\" AND date=\"{$date}\"");
+$result = $mysqli->query("SELECT title, time FROM events WHERE user_id=\"{$user_id}\" AND date=\"{$date}\" ORDER BY time");
 $rows = array();
 
 while($row = $result->fetch_assoc()) {
