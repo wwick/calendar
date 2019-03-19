@@ -15,18 +15,20 @@ function createCalendar(date) {
 	$table = $("<table>", {'class':'calendar_table'});
 	$head_row =$("<tr>");
 
-	for (let day = 0; day < 7; day++) {
-		$head_label = $("<th>", {text:getDayName(day)});
+	for (let i = 0; i < 7; i++) {
+		$head_label = $("<th>", {text:getDayName(i)});
 		$head_row.append($head_label);
 	}
-	$table.append($head_row);
 
-	/*for (let day = 1; day <= days_in_month; day += 7) {
-		date = new Date(year,month,day);
-		$table.append(getWeek(date));
-	}*/
+	$table.append(getFirstWeek(date));
 	
-	$table.append(getWeek(date));
+	for (let day = date.getDate(); day < (days_in_month - 6); day += 7) {
+		date.setDate(day);
+		$table.append(getWeek(date));
+	}
+	date.setDate(day);
+	$table.append(getLastWeek(date));
+	
 	$calendar.append($table);
 
 
@@ -39,59 +41,93 @@ function createCalendar(date) {
 	// 	$calendar.append($day_div);
 	// 	fetchEvents(date_string);
 	// }
-		$table.append(otherWeeks(date));
-	$calendar.append($table);
+		// $table.append(otherWeeks(date));
 }
-
-function otherWeeks(first_date) {
-	$row = $("<tr>");
-	let month = first_date.getMonth();
-	let year = first_date.getFullYear();
-	let day = first_date.getDate();
-
-	date = new Date(year,month,day);
-	difference  = 7 - date.getDay();
-
-	let days_in_month = getNumberOfDays(date);
-	let startWeek = 0;
-	let startCal =  difference + 1;
-
-	for (let i = startWeek; i < 7; i++){
-		let date = new Date(year, month, startCal);
-		let date_string = date.toISOString().substring(0,10);
-		let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
-		$row.append($day_box);
-		startCal++;
-	}	
-	return $row;
-}
-
 
 function getWeek(first_date) {
 	$row = $("<tr>");
 	let month = first_date.getMonth();
 	let year = first_date.getFullYear();
-	let day = first_date.getDate();
+	let first_day = first_date.getDate();
 
-	let date = new Date(year,month,day);
-	for (let i = 0; i < date.getDay(); i++) {
-		$row.append($("<td>"));
-	}
-
-	let days_in_month = getNumberOfDays(date);
-	let start = date.getDay();
-
-	for (let i = start; i < 7; i++) {
-		let date = new Date(year,month,day);
-		let date_string = date.toISOString().substring(0,10);
+	for (let i = 0; i < 7; i++) {
+		let date = new Date(year,month,first_day+i);
+		let date_string = getDateString(date);
 		let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
 		$row.append($day_box);
-		day += 1;
 	}
 
 	return $row;
-
 }
+
+function getFirstWeek(first_date) {
+	$row = $("<tr>");
+	let month = first_date.getMonth();
+	let year = first_date.getFullYear();
+	let first_day = first_date.getDate();
+	let last_day = 7 - first_day;
+
+	for (let i = 1; i < first_day; i++) {
+		$row.append($("<td>"));
+	}
+
+	for (let day = first_day; day < last_day; day++) {
+		let date = new Date(year,month,day);
+		let date_string = getDateString(date);
+		let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
+		$row.append($day_box);
+	}
+
+	return $row;
+}
+
+function getLastWeek(first_date) {
+	$row = $("<tr>");
+	let month = first_date.getMonth();
+	let year = first_date.getFullYear();
+	let first_day = first_date.getDate();
+	let days_in_month = getNumberOfDays(date);
+
+	for (var i = 0; i < 7; i++) {
+		if ((first_day + i) <= days_in_month) {
+			let date = new Date(year,month,first_day+i);
+			let date_string = getDateString(date);
+			let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
+			$row.append($day_box);
+		} else {
+			$row.append($("<td>"));
+		}
+	}
+	return $row;
+}
+
+function getDateString(date) {
+	return date.toISOString().substring(0,10);
+}
+
+
+// function otherWeeks(first_date) {
+// 	$row = $("<tr>");
+// 	let month = first_date.getMonth();
+// 	let year = first_date.getFullYear();
+// 	let day = first_date.getDate();
+
+// 	date = new Date(year,month,day);
+// 	difference  = 7 - date.getDay();
+
+// 	let days_in_month = getNumberOfDays(date);
+// 	let startWeek = 0;
+// 	let startCal =  difference + 1;
+
+// 	for (let i = startWeek; i < 7; i++){
+// 		let date = new Date(year, month, startCal);
+// 		let date_string = date.toISOString().substring(0,10);
+// 		let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
+// 		$row.append($day_box);
+// 		startCal++;
+// 	}	
+// 	return $row;
+// }
 
 
 function getDayName(day) {
