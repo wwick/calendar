@@ -78,3 +78,4 @@ function createButtons() {
 	document.getElementById("event_btn").addEventListener("click", createEvent, false);
 
 }
+

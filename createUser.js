@@ -16,7 +16,9 @@ function createUser() {
 			if (data.success){
 				$(document.body).empty();
 				createButtons();
-				createCalendar(new Date());
+				let date = new Date();
+				createCalendar(date);
+				nextPrevMonth(date);
 			} else {
 			}
 		}).catch(function(error) {

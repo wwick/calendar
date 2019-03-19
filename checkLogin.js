@@ -8,7 +8,9 @@ function checkLogin() {
 			console.log(data.loggedIn ? "User Logged in" : "No user logged in");
 			if (data.loggedIn){
 				createButtons();
-				createCalendar(new Date());
+				let date = new Date();
+				createCalendar(date);
+				nextPrevMonth(date);
 			} else{
 				createLogin();
 			}

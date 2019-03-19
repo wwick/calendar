@@ -8,11 +8,11 @@ function createCalendar(date) {
 	$calendar.append($("<h3>", {text:"These are your events for the month:"}));
 	let days_in_month = getNumberOfDays(date);
     $(document.body).append($calendar);
-    let month = date.getMonth()+1;
+    let month = date.getMonth();
     let year = date.getFullYear();
     console.log(month);
     console.log(year);
-	for (let day = 1; day < days_in_month; day++) {
+	for (let day = 1; day <= days_in_month; day++) {
 		date = new Date(year,month,day);
 		console.log(date.toString());
 		let date_string = date.toISOString().substring(0,10);
@@ -61,4 +61,24 @@ function fetchEvents(date_string) {
 		.catch(function(error) {
 			console.log(error);
 		});
+}
+function nextPrevMonth(date) {
+	let $buttons = $("<div>");
+	let $prev_btn = $("<button>", {class:"button", type:"submit", id:"prev_btn", text:"Previous Month"});
+	$buttons.append($prev_btn);
+	
+
+	let $next_btn = $("<button>", {class:"button", type:"submit", id:"next_btn", text:"Next Month"});
+	$buttons.append($next_btn);
+	$(document.body).append($buttons);
+
+	document.getElementById("prev_btn").addEventListener("click", function() {
+		date.setMonth(date.getMonth()-1);
+		createCalendar(date);
+	}, false);
+
+	document.getElementById("next_btn").addEventListener("click", function() {
+		date.setMonth(date.getMonth()+1);
+		createCalendar(date);
+	}, false);
 }

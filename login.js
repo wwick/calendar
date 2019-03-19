@@ -16,6 +16,8 @@ function login() {
 			console.log(data.user.user_id);
 			$(document.body).empty();
 			createButtons();
-			createCalendar(new Date());
+			let date = new Date();
+			createCalendar(date);
+			nextPrevMonth(date);
 		});
 }
