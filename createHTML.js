@@ -61,6 +61,11 @@ function createButtons() {
 	$create_event.append($time_field);
 	$create_event.append("<br>");
 
+	$create_event.append("Shared User: ");
+	let $shared_user = $("<input>", {type:"text", id:"shared_user"});
+	$create_event.append($shared_user);
+	$create_event.append("<br>");
+
 	let $event_btn = $("<button>", {class:"button", type:"submit", id:"event_btn", text:"Create Event"});
 	function notify() {
 		alert( "clicked");
