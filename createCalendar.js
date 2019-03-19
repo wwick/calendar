@@ -28,14 +28,11 @@ function createCalendar(date) {
 	$calendar.append($table);
 
 
-	// for (let day = 1; day <= days_in_month; day++) {
-	// 	date = new Date(year,month,day);
-	// 	console.log(date.toString());
-	// 	let date_string = date.toISOString().substring(0,10);
-	// 	let $day_div = $("<div>", {id:date_string, 'class':'day', text:date_string});
-	// 	$calendar.append($day_div);
-	// 	fetchEvents(date_string);
-	// }
+	for (let day = 1; day <= days_in_month; day++) {
+	 	date = new Date(year,month,day);
+	 	let date_string = date.toISOString().substring(0,10);
+	 	fetchEvents(date_string);
+	}
 }
 
 function getLastDayOfWeek(date) {
