@@ -13,6 +13,12 @@ function createUser() {
 		.then(response => response.json())
 		.then(data => {
 			console.log(data.success ? "User created" : "User not created");
+			if (data.success){
+				$(document.body).empty();
+				createButtons();
+				createCalendar(new Date());
+			} else {
+			}
 		}).catch(function(error) {
 			console.log(error);
 		});

@@ -14,6 +14,9 @@ function login() {
 		.then(data => {
 			console.log(data.success ? "You've been logged in!" : "You were not logged in ");
 			console.log(data.user.user_id);
+			$(document.body).empty();
+			createButtons();
 			createCalendar(new Date());
+
 		});
 }

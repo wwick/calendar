@@ -6,8 +6,11 @@ function checkLogin() {
 		.then(response => response.json())
 		.then(data => {
 			console.log(data.loggedIn ? "User Logged in" : "No user logged in");
-			console.log("checked login");
-			createCalendar(new Date());
+			if (data.loggedIn){
+				createCalendar(new Date());
+			} else{
+				createLogin();
+			}
 		}).catch( function(error) {
 			console.log(error);
 		});
