@@ -52,7 +52,7 @@ function createCalendar(date) {
 	$calendar.append($("<h3>", {text:"These are your events for the month:"}))
 	let days_in_month = getNumberOfDays(date);
 	$(document.body).append($calendar);
-	for (let day = 1; day < days_in_month; day++) {
+	for (let day = 0; day < days_in_month; day++) {
 		date.setDate(day);
 		let date_string = date.toISOString().substring(0,10);
 		let $day_div = $("<div>", {id:date_string, 'class':'day', text:date_string});
