@@ -6,6 +6,7 @@ if (!isset($_SESSION["user"])){
 	echo json_encode(array(
 		"loggedIn" => false
 	));
+
 } else {
 	$stmt = $mysqli->prepare("select user from users where user_id={$_SESSION['user']}");
 	if(!$stmt){
@@ -21,6 +22,7 @@ if (!isset($_SESSION["user"])){
 		"user" => $user_name,
 		"user_id" => $_SESSION["user"]
 	));
-}
+
 $stmt->close();
+}
 ?>
