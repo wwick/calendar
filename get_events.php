@@ -6,6 +6,7 @@ if(!isset($_SESSION['user'])) {
 	echo json_encode(array(
 		error => "not logged in"
 	));
+	exit;
 }
 
 header('Content-Type: application/json');
@@ -17,7 +18,7 @@ $json_obj = json_decode($json_str, true);
 $date = $json_obj['date'];
 $user_id = $_SESSION['user'];
 
-$result = $mysqli->query("SELECT title, time FROM events WHERE user_id=\"{$user_id}\" AND date=\"{$date}\" ORDER BY time");
+$result = $mysqli->query("SELECT title, time, event_id FROM events WHERE user_id={$user_id} AND date={$date} ORDER BY time");
 $rows = array();
 
 while($row = $result->fetch_assoc()) {

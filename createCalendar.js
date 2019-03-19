@@ -110,18 +110,18 @@ function fetchEvents(date_string) {
 			$day.empty();
 			$day.text(date_string);
 			for (i in events) {
-				let $event = $("<div>", {'class':'event'});
+				let $event = $("<div>", {'class':'event', id:events[i].event_id});
 				let title_text = "Title: " + events[i].title;
 				let time_text = "Time: " + events[i].time;
 				let $title = $("<div>", {'class':'title', text:title_text});
 				let $time = $("<div>", {'class':'time', text:time_text});
 				$title.click(function() {
-					title_text = "Title: " + prompt("Enter new title",events[i].title);
-					$title.text(title_text);
+					let new_title = prompt("Enter new title",events[i].title);
+					modifyEvent(new_title,events[i].time,date_string,events[i].event_id);
 				});
 				$time.click(function() {
-					time_text = "Time: " + prompt("Enter new time",events[i].time);
-					$time.text(time_text);
+					let new_time = prompt("Enter new time",events[i].time);
+					modifyEvent(events[i].title,new_time,date_string,events[i].event_id);					
 				});
 				$event.append($title);
 				$event.append($time);
