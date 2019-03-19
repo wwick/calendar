@@ -30,7 +30,7 @@ function createCalendar(date) {
 
 	for (let day = 1; day <= days_in_month; day++) {
 	 	date = new Date(year,month,day);
-	 	let date_string = date.toISOString().substring(0,10);
+	 	let date_string = getDateString(date);
 	 	fetchEvents(date_string);
 	}
 }
@@ -110,8 +110,21 @@ function fetchEvents(date_string) {
 			$day.empty();
 			$day.text(date_string);
 			for (i in events) {
-				let event_text = events[i].title + ": " + events[i].time;
-				let $event = $("<h3>", {'class':'event', text:event_text});
+				let $event = $("<div>", {'class':'event'});
+				let title_text = "Title: " + events[i].title;
+				let time_text = "Time: " + events[i].time;
+				let $title = $("<div>", {'class':'title', text:title_text});
+				let $time = $("<div>", {'class':'time', text:time_text});
+				$title.click(function() {
+					title_text = "Title: " + prompt("Enter new title",events[i].title);
+					$title.text(title_text);
+				});
+				$time.click(function() {
+					time_text = "Time: " + prompt("Enter new time",events[i].time);
+					$time.text(time_text);
+				});
+				$event.append($title);
+				$event.append($time);
 				$day.append($event);
 			}
 		})
