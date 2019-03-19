@@ -126,6 +126,7 @@ function fetchEvents(date_string) {
 				$event.append($title);
 				$event.append($time);
 				$day.append($event);
+				console.log("reached");
 			}
 		})
 		.catch(function(error) {

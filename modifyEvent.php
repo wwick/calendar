@@ -2,7 +2,7 @@
 require 'database.php';
 header("Content-Type: application/json");
 session_start();
-if (isset($_SESSION['user'])) {
+if (!isset($_SESSION['user'])) {
 	echo json_encode(array(
 		"success" => false
 	));
