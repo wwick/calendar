@@ -7,6 +7,7 @@ function checkLogin() {
 		.then(data => {
 			console.log(data.loggedIn ? "User Logged in" : "No user logged in");
 			if (data.loggedIn){
+				createButtons();
 				createCalendar(new Date());
 			} else{
 				createLogin();

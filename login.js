@@ -17,6 +17,5 @@ function login() {
 			$(document.body).empty();
 			createButtons();
 			createCalendar(new Date());
-
 		});
 }
