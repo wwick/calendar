@@ -13,6 +13,8 @@ function createUser() {
 		.then(response => response.json())
 		.then(data => {
 			console.log(data.success ? "User created" : "User not created");
+		}).catch(function(error) {
+			console.log(error);
 		});
 }
 
