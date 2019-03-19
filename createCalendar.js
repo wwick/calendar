@@ -12,7 +12,7 @@ function createCalendar(date) {
 	let year = date.getFullYear();
 	date.setDate(1);
    
-	$table = $("<table>", {'class':'calendar_table'});
+	$table = $("<table>");
 	$head_row =$("<tr>");
 
 	for (let i = 0; i < 7; i++) {
@@ -21,7 +21,7 @@ function createCalendar(date) {
 	}
 	$table.append($head_row);
 
-	$table.append(getFirstWeek(date));
+	$table.append(getWeek(date));
 	date.setDate(8-date.getDay());
 	
 	for (var day = date.getDate(); day < (days_in_month - 6); day += 7) {
@@ -29,7 +29,7 @@ function createCalendar(date) {
 		$table.append(getWeek(date));
 	}
 	date.setDate(day);
-	$table.append(getLastWeek(date));
+	$table.append(getWeek(date));
 	
 	$calendar.append($table);
 
@@ -46,62 +46,83 @@ function createCalendar(date) {
 		// $table.append(otherWeeks(date));
 }
 
+function getLastDateOfWeek(date) {
+	let days_in_month = getNumberOfDays(date);
+	let year = date.getFullYear();
+	let month = date.getMonth();
+	let current_date = date.getDate();
+	let last_date;
+	if (current_date <= 7) {
+		last_date = 7 - current_date;
+	} else if (last_date_of_month - current_date < 6) {
+		last_date = last_date_of_month;
+	} else {
+		last_date = current_date + 6;
+	}
+	return new Date(year, month, last_date);
+}
+
+
 function getWeek(first_date) {
 	$row = $("<tr>");
-	let month = first_date.getMonth();
 	let year = first_date.getFullYear();
-	let first_day = first_date.getDate();
-
-	for (let i = 0; i < 7; i++) {
-		let date = new Date(year,month,first_day+i);
-		let date_string = getDateString(date);
-		let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
-		$row.append($day_box);
-	}
-
-	return $row;
-}
-
-function getFirstWeek(first_date) {
-	$row = $("<tr>");
 	let month = first_date.getMonth();
-	let year = first_date.getFullYear();
 	let first_day = first_date.getDay();
-	let last_day = 7 - first_day;
-
-	for (let i = 1; i < first_day; i++) {
-		$row.append($("<td>"));
-	}
-
-	for (let day = first_day; day < last_day; day++) {
-		let date = new Date(year,month,day);
-		let date_string = getDateString(date);
-		let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
-		$row.append($day_box);
-	}
-
-	return $row;
-}
-
-function getLastWeek(first_date) {
-	$row = $("<tr>");
-	let month = first_date.getMonth();
-	let year = first_date.getFullYear();
-	let first_day = first_date.getDate();
-	let days_in_month = getNumberOfDays(first_date);
-
-	for (var i = 0; i < 7; i++) {
-		if ((first_day + i) <= days_in_month) {
-			let date = new Date(year,month,first_day+i);
+	let last_day = getLastDateOfWeek(first_date).getDay();
+	for (let i = 0, j = 0; i < 7; i++) {
+		if (i < first_day || i > last_day) {
+			$row.append("<td>");
+		} else {
+			let date = new Date(year,month,first_day+j);
 			let date_string = getDateString(date);
 			let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
 			$row.append($day_box);
-		} else {
-			$row.append($("<td>"));
+			j++;
 		}
 	}
 	return $row;
 }
+
+// function getFirstWeek(first_date) {
+// 	$row = $("<tr>");
+// 	let month = first_date.getMonth();
+// 	let year = first_date.getFullYear();
+// 	let first_day = first_date.getDay();
+// 	let last_day = 7 - first_day;
+
+// 	for (let i = 1; i < first_day; i++) {
+// 		$row.append($("<td>"));
+// 	}
+
+// 	for (let day = first_day; day < last_day; day++) {
+// 		let date = new Date(year,month,day);
+// 		let date_string = getDateString(date);
+// 		let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
+// 		$row.append($day_box);
+// 	}
+
+// 	return $row;
+// }
+
+// function getLastWeek(first_date) {
+// 	$row = $("<tr>");
+// 	let month = first_date.getMonth();
+// 	let year = first_date.getFullYear();
+// 	let first_day = first_date.getDate();
+// 	let days_in_month = getNumberOfDays(first_date);
+
+// 	for (var i = 0; i < 7; i++) {
+// 		if ((first_day + i) <= days_in_month) {
+// 			let date = new Date(year,month,first_day+i);
+// 			let date_string = getDateString(date);
+// 			let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
+// 			$row.append($day_box);
+// 		} else {
+// 			$row.append($("<td>"));
+// 		}
+// 	}
+// 	return $row;
+// }
 
 function getDateString(date) {
 	return date.toISOString().substring(0,10);
@@ -177,7 +198,6 @@ function nextPrevMonth(date) {
 	let $prev_btn = $("<button>", {class:"button", type:"submit", id:"prev_btn", text:"Previous Month"});
 	$buttons.append($prev_btn);
 	
-
 	let $next_btn = $("<button>", {class:"button", type:"submit", id:"next_btn", text:"Next Month"});
 	$buttons.append($next_btn);
 	$(document.body).append($buttons);
