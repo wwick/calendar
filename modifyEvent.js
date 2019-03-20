@@ -15,7 +15,7 @@ function modifyEvent(event_id) {
 	.then(response => response.json())
 	.then(data => {
 		console.log(data.success ? "Event added" : "Event not added");
-		createCalendar(date);
+		createCalendar(new Date());
 	}).catch(error => console.log(error));
 
 }

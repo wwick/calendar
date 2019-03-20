@@ -2,6 +2,9 @@
 
 require 'database.php';
 session_start();
+
+$_SESSION['user'] = 4;
+
 if (!isset($_SESSION['user'])) {
 	echo json_encode(array(
 		"success" => false
@@ -9,8 +12,14 @@ if (!isset($_SESSION['user'])) {
 	exit;
 }
 
+
+
 $user_id = $_SESSION["user"];
-$json_str = file_get_contents('php://input');
+// $json_str = file_get_contents('php://input');
+
+$json_str = "{title:bowling,time:02:03:00,date:2019-03-14,event_id:12}";
+
+
 $json_obj = json_decode($json_str, true);
 
 $title = $json_obj["title"];

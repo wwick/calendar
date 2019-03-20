@@ -94,7 +94,7 @@ function createButtons() {
 
 	$join_group = $("<div>");
 	$join_group.append("Group ID: ");
-	let $group_field = $("<input>", {type:"number", id:"group_num", min:"0", step:"1"});
+	let $group_field = $("<input>", {type:"number", id:"join_group", min:"0", step:"1"});
 	$join_group.append($group_field);
 	$join_group.append("<br>");
 
@@ -110,6 +110,7 @@ function createButtons() {
 
 	document.getElementById("event_btn").addEventListener("click", createEvent, false);
 	document.getElementById("share_btn").addEventListener("click", shareCal, false);
+	document.getElementById("join_btn").addEventListener("click", joinGroup, false);
 
 }
 
