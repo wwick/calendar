@@ -42,7 +42,7 @@ function createLogin() {
 
 }
 
-function createModifyEventForm(event_id) {
+function createModifyEventForm(event_id, date) {
 	
 	$( ".modify_event" ).remove();
 	let $modify_event = $("<div>", {"class":"modify_event"});
@@ -55,8 +55,10 @@ function createModifyEventForm(event_id) {
 	$modify_event.append($title_field);
 	$modify_event.append("<br>");
 
+	date = getDateString(date);
+
 	$modify_event.append("Date: ");
-	let $date_field = $("<input>", {type:"date", id:"new_date"});
+	let $date_field = $("<input>", {type:"date", id:"new_date", value:date});
 	$modify_event.append($date_field);
 	$modify_event.append("<br>");
 
