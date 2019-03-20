@@ -28,7 +28,7 @@ $stmt->close();
 $cal_user = $shared_user;
 
 
-$stmt = $mysqli->prepare("insert into viewable (shared_user_id, owner_user_id) values (12, 13)");
+$stmt = $mysqli->prepare("insert into viewable (shared_user_id, owner_user_id) values ({$cal_user}, {$user_id})");
 
 
 if(!$stmt){
