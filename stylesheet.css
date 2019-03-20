@@ -1,0 +1,25 @@
+table {  
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    width: 640px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 16px;
+}
+
+td, th {
+    border: 1px solid black;
+    height: 30px;
+    text-align: center;
+ }
+
+th {  
+    background: rgb(5, 137, 255);
+    font-weight: bold;
+    color: White;
+}
+
+body{
+    width: 600px; /* how wide to make your web page */
+    font:12px/16px Helvetica, Arial, sans-serif; /* default font */
+}
