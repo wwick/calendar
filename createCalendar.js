@@ -11,9 +11,11 @@ function createCalendar(date) {
 	let year = date.getFullYear();
 
 	let month_name = getMonthName(month);
-
+	
 	$calendar.append($("<h3>", {text:"These are your events for the month of " + month_name + " " + year}));
-   
+	$calendar.append(nextPrevMonth(date));
+	$calendar.append("<br>");
+
 	$table = $("<table>");
 	$head_row =$("<tr>");
 
@@ -36,8 +38,7 @@ function createCalendar(date) {
 
 	for (let day = 1; day <= days_in_month; day++) {
 	 	date = new Date(year,month,day);
-	 	let date_string = getDateString(date);
-	 	fetchEvents(date_string);
+	 	fetchEvents(date);
 	}
 }
 
@@ -110,7 +111,7 @@ function getMonthName(month) {
 		case 0:
 			return "January";
 		case 1:
-			return "Februaru";
+			return "February";
 		case 2:
 			return "March";
 		case 3:
@@ -135,7 +136,8 @@ function getMonthName(month) {
 	return "";
 }
 
-function fetchEvents(date_string) {
+function fetchEvents(date) {
+	let date_string = getDateString(date);
 	const php_path = "get_events.php";
 	const data = { 'date':date_string }
 	fetch(php_path, {method: "POST", body: JSON.stringify(data)})
@@ -149,7 +151,7 @@ function fetchEvents(date_string) {
 				let event_text = events[i].title + " at " + events[i].time;
 				let $event = $("<div>", {'class':'event', id:events[i].event_id, text:event_text});
 				$event.click(function() {
-				    createModifyEventForm(event_id);	
+				    createModifyEventForm(event_id,date);	
 				});
 				$day.append($event);
 			}
@@ -167,7 +169,6 @@ function nextPrevMonth(date) {
 	
 	let $next_btn = $("<button>", {class:"button", type:"submit", id:"next_btn", text:"Next Month"});
 	$buttons.append($next_btn);
-	$( ".calendar" ).append($buttons);
 
 	$prev_btn.click(function() {
 		date.setMonth(date.getMonth()-1);
@@ -178,4 +179,6 @@ function nextPrevMonth(date) {
 		date.setMonth(date.getMonth()+1);
 		createCalendar(date);
 	});
+	
+	return $buttons;
 }
