@@ -4,7 +4,7 @@
 # Links
 Elijah Pena (455281) - http://ec2-52-15-187-19.us-east-2.compute.amazonaws.com/~elijahpena/spring2019-module5-group-455281-467000/calendar.php
 
-Will Wick (467000) - 
+Will Wick (467000) - http://ec2-52-14-191-6.us-east-2.compute.amazonaws.com/~wwick/git/spring2019-module5-group-455281-467000/calendar.php
 
 
 
