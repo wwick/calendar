@@ -6,7 +6,6 @@ function modifyEvent(event_id) {
 	const time = $( "#new_time" ).val() + ":00";
 
 	const data = { 'title': title, 'time': time, 'date': date, 'event_id':event_id };
-	console.log(JSON.stringify(data));
 	fetch("modifyEvent.php", {
 		method: 'POST',
 		body: JSON.stringify(data),
@@ -15,7 +14,9 @@ function modifyEvent(event_id) {
 	.then(response => response.json())
 	.then(data => {
 		console.log(data.success ? "Event added" : "Event not added");
-		createCalendar(new Date());
+		let year = date.substring(0,5);
+		let month = date.substring(6,8);
+		createCalendar(new Date(year,month));
 	}).catch(error => console.log(error));
 
 }
