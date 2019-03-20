@@ -18,6 +18,16 @@ $json_obj = json_decode($json_str, true);
 $date = $json_obj['date'];
 $user_id = $_SESSION['user'];
 
+$stmt = $mysqli->prepare("select owner_user_id where shared_user_id={$user_id}");
+$stmt->execute();
+$stmt->bind_result($id);
+$ids = array();
+
+while($stmt->fetch()){
+	$ids[] = $id;
+}
+$stmt->close();
+
 $result = $mysqli->query("SELECT title, time, event_id FROM events WHERE user_id={$user_id} AND date=\"{$date}\" ORDER BY time");
 $rows = array();
 

@@ -6,7 +6,7 @@ function createEvent(){
 	const shared_user = document.getElementById("shared_user").value;
 
 	console.log(time);
-	const data = { 'title': title, 'date': date, 'time': time, 'shared_user': shared_user }
+	const data = { 'title': title, 'date': date, 'time': time, 'shared_user': shared_user };
 	fetch("createEvent.php", {
 		method: 'POST',
 		body: JSON.stringify(data),

@@ -75,12 +75,25 @@ function createButtons() {
 
 	$(document.body).append($create_event);
 
+	$share = $("<div>");
+
+	$share.append("User: ");
+	let $share_field = $("<input>", {type:"text", id:"cal_user"});
+	$share.append($share_field);
+	$share.append("<br>");
+
+	let $share_btn = $("<button>", {class:"button", type:"submit", id:"share_btn", text:"Share with User"});
+
+	$share.append($share_btn);
+	$(document.body).append($share);
+
 	let $logout = $("<div>");
 	let $logout_btn = $("<a>", {class:"button", text:"logout", href:"abort.php"});
 	$logout.append($logout_btn);
 	$(document.body).append($logout);
 
 	document.getElementById("event_btn").addEventListener("click", createEvent, false);
+	document.getElementById("share_btn").addEventListener("click", shareCal, false);
 
 }
 
