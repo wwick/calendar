@@ -67,9 +67,16 @@ function createModifyEventForm(event_id) {
 
 	let $modify_event_btn = $("<button>", {class:"button", type:"submit", id:"modify_event_btn", text:"Modify Event"});
 	$modify_event.append($modify_event_btn);
+
+	let $delete_btn = $("<button>", {class:"button", type:"submit", id:"delete_btn", text: "Delete Event"});
+	$modify_event.append($delete_btn);
+
 	$(document.body).append($modify_event);
 	$modify_event_btn.click(function() {
-		modifyEvent(event_id);
+		modifyEvent(event_id, "modify");
+	});
+	$delete_btn.click(function() {
+		modifyEvent(event_id, "delete");
 	});
 }
 
