@@ -24,6 +24,6 @@
 document.addEventListener("DOMContentLoaded", checkLogin, false);
 				
 </script>
-<input type="hidden" name="token" id="token" value="<?php session_start(); echo $_SESSION["token"]; ?>" />
+	<input type="hidden" name="token" id="token" value="<?php session_start(); echo $_SESSION["token"]; ?>" />
 </body>
 </html>
