@@ -5,9 +5,11 @@ function createEvent(){
 
 	if (!validDate(date)) {
 		return;
-	} else if (!validTime(time)) {
+	}
+	if (!validTime(time)) {
 		return;
-	} else if (!validTitle(title)) {
+	}
+	if (!validTitle(title)) {
 		return
 	}
 
