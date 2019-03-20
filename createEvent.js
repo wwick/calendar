@@ -15,7 +15,11 @@ function createEvent(){
 	})
 	.then(response => response.json())
 	.then(data => {
+		let year = date.substring(0,4);
+		let month = date.substring(5,7) - 1;
+		console.log(date.substring(0,4) + " " + date.substring(5,7));
 		console.log(data.success ? "Event added" : "Event not added");
-		fetchEvents(date);
+		createCalendar(new Date(year, month));
+		//fetchEvents(new Date(date.substring(0,4),date.substring(5,7)));
 	});
 }
