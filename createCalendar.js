@@ -5,9 +5,8 @@ function createCalendar(date) {
 	$( ".modify_event" ).remove();
 
 	let $calendar = $("<div>", {'class':'calendar'});
-	//$(document.body).append($calendar);
-	let $buttons = nextPrevMonth(date);
-	$calendar.append($buttons);
+	$(document.body).append($calendar);
+	$calendar.append("<br>");
 
 	let days_in_month = getNumberOfDays(date);
     let month = date.getMonth();
@@ -38,7 +37,6 @@ function createCalendar(date) {
 	}
 	
 	$calendar.append($table);
-	$(document.body).append($calendar);
 
 	for (let day = 1; day <= days_in_month; day++) {
 	 	date = new Date(year,month,day);
@@ -72,7 +70,7 @@ function getWeek(first_date) {
 		} else {
 			let date = new Date(year,month,start+j);
 			let date_string = getDateString(date);
-			let $day_box = $("<td>", {id:date_string, 'class':'day', text:date_string});
+			let $day_box = $("<td>", {id:date_string, 'class':'day', text:start+j});
 			$row.append($day_box);
 			j++;
 		}
