@@ -13,6 +13,7 @@ $time = $json_obj["time"];
 $shared_user = $json_obj["shared_user"];
 $group_num = $json_obj["group_num"];
 
+// sharing functionality
 if ($shared_user === ""){
 	if ($group_num === "") {
 		$stmt = $mysqli->prepare("insert into events (user_id, title, date, time) values ('$user_id', '$title', '$date', '$time')");

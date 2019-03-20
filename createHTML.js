@@ -107,13 +107,13 @@ function createButtons() {
 	$create_event.append($time_field);
 	$create_event.append("<br>");
 
-	$create_event.append("Share Event with User: ");
+	$create_event.append("Share Event with User (Optional): ");
 	let $shared_user = $("<input>", {type:"text", id:"shared_user"});
 	$create_event.append($shared_user);
 	$create_event.append("<br>");
 
-	$create_event.append("Share Event with Group: ");
-	let $shared_group = $("<input>", {type:"number", id:"group_num", min:"0", step:"1"});
+	$create_event.append("Share Event with Group (Optional): ");
+	let $shared_group = $("<input>", {type:"number", id:"group_num", min:"0", max:"65000", step:"1"});
 	$create_event.append($shared_group);
 	$create_event.append("<br>");
 
@@ -145,7 +145,7 @@ function createButtons() {
 	let $join_group_header = $("<h3>", {text:"Join Group"});
 	$join_group.append($join_group_header);
 	$join_group.append("Group ID: ");
-	let $group_field = $("<input>", {type:"number", id:"join_group", min:"0", step:"1"});
+	let $group_field = $("<input>", {type:"number", id:"join_group", min:"0", max:"65000", step:"1"});
 	$join_group.append($group_field);
 	$join_group.append("<br>");
 

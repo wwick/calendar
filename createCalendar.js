@@ -1,4 +1,6 @@
+// main function
 function createCalendar(date) {
+
 	$( ".calendar ").remove();
 	$( ".modify_event" ).remove();
 
@@ -136,6 +138,7 @@ function getMonthName(month) {
 	return "";
 }
 
+// gets events for a date
 function fetchEvents(date) {
 	let date_string = getDateString(date);
 	const php_path = "get_events.php";

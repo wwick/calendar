@@ -19,7 +19,6 @@ if(!$stmt){
 	exit;
 }
 
-//echo json_encode(array("user_id"=>true));
 $stmt->execute();
 $stmt->bind_result($shared_user);
 

@@ -25,8 +25,3 @@ function createUser() {
 			console.log(error);
 		});
 }
-
-// document.addEventListener("DOMContentLoaded", function() {
-// 	document.getElementById("create_btn").addEventListener("click", createUser, false);
-// });
-

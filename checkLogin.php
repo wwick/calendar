@@ -1,4 +1,6 @@
 <?php
+
+// makes sure that you log in as a valid user
 require 'database.php';
 header("Content-Type: application/json");
 session_start();
