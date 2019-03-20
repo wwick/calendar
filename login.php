@@ -22,12 +22,15 @@ while($stmt->fetch()){
 	if($user === $tableUser){//checks if password hashes match
 		if(password_verify($password, $tablePass)){
 			$_SESSION["user"] = $user_id;
-			$_SESSION["token"] = bin2hex(random_bytes(32));
+			$token = bin2hex(random_bytes(32));
+
+			$_SESSION["token"] = $token;
 			echo json_encode(array(
 				"success" => true,
 				"user" => array(
 					"user" => $tableUser,
-					"user_id" => $user_id
+					"user_id" => $user_id,
+					"token" => $token
 				)
 			));
 			exit;
