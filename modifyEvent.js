@@ -4,7 +4,7 @@ function modifyEvent(event_id, operator) {
 	const title = $( "#new_title" ).val();
 	const date = $( "#new_date" ).val();
 	const time = $( "#new_time" ).val();
-	const token = document.getElementById("token").getAttribute("value");
+	const token = document.getElementById("token").getAttribute("content");
 
 	if (!validDate(date)) {
 		return;
