@@ -105,16 +105,15 @@ function fetchEvents(date_string) {
 	fetch(php_path, {method: "POST", body: JSON.stringify(data)})
 		.then(response => response.json())
 		.then(function(events) {
-			console.log(events);
 			let $day = $( "#"+date_string );			
 			$day.empty();
 			$day.text(date_string);
 			for (i in events) {
+				let event_id = events[i].event_id;
 				let event_text = events[i].title + " at " + events[i].time;
 				let $event = $("<div>", {'class':'event', id:events[i].event_id, text:event_text});
 				$event.click(function() {
-				    //create form at bottom to modify event modifyEventForm(title,time,date)
-				    //then call modifyEvent(...) from form	
+				    createModifyEventForm(event_id);	
 				});
 				$day.append($event);
 			}
@@ -145,10 +144,14 @@ function nextPrevMonth(date) {
 	}, false);
 }
 
-function modifyEventForm(event_id) {
-
-	let $modify_event = $("<div>");
-
+function createModifyEventForm(event_id) {
+	
+	$( ".modify_event" ).remove();
+	let $modify_event = $("<div>", {"class":"modify_event"});
+	$modify_event.append($("<br>"));
+	
+	let $header = $("<h3>", {text:"Modify Event Form"});
+	$modify_event.append($header);
 	$modify_event.append("Title: ");
 	let $title_field = $("<input>", {type:"text", id:"new_title"});
 	$modify_event.append($title_field);
