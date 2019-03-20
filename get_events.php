@@ -35,7 +35,20 @@ $ids = "(".$ids.")";
 	$ids = "(".$user_id.")";
 }
 
+$stmt = $mysqli->prepare("select group_id from users where user_id={$user_id}");
+$stmt->execute();
+$stmt->bind_result($group_id);
+$stmt->fetch();
+$group = $group_id;
+$stmt->close();
+
+
+if (is_null($group)){
 $result = $mysqli->query("SELECT title, time, event_id FROM events WHERE (user_id in {$ids} or shared_users={$user_id}) AND date=\"{$date}\" ORDER BY time");
+
+} else {
+$result = $mysqli->query("SELECT title, time, event_id FROM events WHERE (user_id in {$ids} or shared_users={$user_id} or group_id={$group}) AND date=\"{$date}\" ORDER BY time");
+}
 $rows = array();
 
 while($row = $result->fetch_assoc()) {
