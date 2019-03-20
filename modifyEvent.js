@@ -13,7 +13,7 @@ function modifyEvent(event_id, operator) {
 		return;
 	}
 	if (!validTitle(title)) {
-		return
+		return;
 	}
 
 	const data = { 'title': title, 'time': time, 'date': date, 'event_id':event_id, 'token':token, 'operator':operator };
