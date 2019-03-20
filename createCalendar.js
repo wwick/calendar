@@ -153,6 +153,8 @@ function fetchEvents(date) {
 				$event.click(function() {
 				    createModifyEventForm(event_id,date);	
 				});
+				$event.prepend("<br>");
+				$event.css("color","blue");
 				$day.append($event);
 			}
 		})
