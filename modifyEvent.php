@@ -1,6 +1,7 @@
 <?php
 
 require 'database.php';
+header("Content-Type: application/json");
 session_start();
 
 if (!isset($_SESSION['user'])) {
@@ -11,6 +12,7 @@ if (!isset($_SESSION['user'])) {
 }
 
 $user_id = $_SESSION["user"];
+$server_token = $_SESSION["token"];
 $json_str = file_get_contents('php://input');
 
 $json_obj = json_decode($json_str, true);
@@ -19,6 +21,14 @@ $title = $json_obj["title"];
 $date = $json_obj["date"];
 $time = $json_obj["time"];
 $event_id = $json_obj["event_id"];
+$token = $json_obj["token"];
+
+if(!hash_equals($server_token, $token)){
+	echo json_encode(array(
+		"success" => false
+	));
+	exit;
+}
 
 $stmt = $mysqli->prepare("UPDATE events SET title=\"{$title}\", date=\"{$date}\", time=\"{$time}\" WHERE user_id=\"{$user_id}\" AND event_id=\"{$event_id}\"");
 
