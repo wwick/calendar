@@ -38,7 +38,7 @@ function createLogin() {
 	$login_button.on("click", login);
 	$login.append($login_button);
 
-	$(document.body).html($login);
+	$(document.body).append($login);
 	$create_user_button.click(createUser);
 
 }

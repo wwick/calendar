@@ -4,6 +4,8 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		
+	<meta name="token" id="token" value="<?php session_start(); echo $_SESSION["token"]; ?>" >
 		<title>Calendar</title>
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
