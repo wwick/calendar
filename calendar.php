@@ -17,6 +17,7 @@
 		<script src="shareCal.js"></script>
 		<script src="joinGroup.js"></script>
 		<script src="validateTime.js"></script>
+		<script src="validDate.js"></script>
 	</head>
 	<body>
 
