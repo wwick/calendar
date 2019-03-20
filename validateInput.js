@@ -1,5 +1,5 @@
 function validDate(date) {
-	let regex = `/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/`;
+	let regex = "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$";
 	regex = new RegExp(regex);
 	let match = date.match(regex);
 	if (match != null) {
@@ -24,7 +24,7 @@ function validTitle(title) {
 	let regex = "/[;<>$]/g";
 	regex = new RegExp(regex);
 	let match = title.match(regex);
-	if (match != null) {
+	if (match == null) {
 		return true;
 	} else {
 		return false;
