@@ -11,7 +11,6 @@ function checkLogin() {
 				createButtons();
 				let date = new Date();
 				createCalendar(date);
-				nextPrevMonth(date);
 			} else{
 				createLogin();
 			}

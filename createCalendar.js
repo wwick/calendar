@@ -3,13 +3,16 @@ function createCalendar(date) {
 	$( ".modify_event" ).remove();
 
 	let $calendar = $("<div>", {'class':'calendar'});
+	$(document.body).append($calendar);
+	nextPrevMonth(date);
 
-	$calendar.append($("<h3>", {text:"These are your events for the month:"}));
 	let days_in_month = getNumberOfDays(date);
-    $(document.body).append($calendar);
     let month = date.getMonth();
 	let year = date.getFullYear();
-	date.setDate(1);
+
+	let month_name = getMonthName(month);
+
+	$calendar.append($("<h3>", {text:"These are your events for the month of " + month_name + " " + year}));
    
 	$table = $("<table>");
 	$head_row =$("<tr>");
@@ -20,6 +23,7 @@ function createCalendar(date) {
 	}
 	$table.append($head_row);
 
+	date.setDate(1);
 	$table.append(getWeek(date));
 	date.setDate(8-date.getDay());
 	
@@ -101,6 +105,36 @@ function getDayName(day) {
 	return "";
 }
 
+function getMonthName(month) {
+	switch (month) {
+		case 0:
+			return "January";
+		case 1:
+			return "Februaru";
+		case 2:
+			return "March";
+		case 3:
+			return "April";
+		case 4:
+			return "May";
+		case 5:
+			return "June";
+		case 6:
+			return "July";
+		case 7:
+			return "August";
+		case 8:
+			return "September";
+		case 9:
+			return "October";
+		case 10:
+			return "November";
+		case 11:
+			return "December";
+	}
+	return "";
+}
+
 function fetchEvents(date_string) {
 	const php_path = "get_events.php";
 	const data = { 'date':date_string }
@@ -125,7 +159,7 @@ function fetchEvents(date_string) {
 		});
 }
 
-
+// creates buttons to go from 
 function nextPrevMonth(date) {
 	let $buttons = $("<div>");
 	let $prev_btn = $("<button>", {class:"button", type:"submit", id:"prev_btn", text:"Previous Month"});
@@ -133,15 +167,15 @@ function nextPrevMonth(date) {
 	
 	let $next_btn = $("<button>", {class:"button", type:"submit", id:"next_btn", text:"Next Month"});
 	$buttons.append($next_btn);
-	$(document.body).append($buttons);
+	$( ".calendar" ).append($buttons);
 
-	document.getElementById("prev_btn").addEventListener("click", function() {
+	$prev_btn.click(function() {
 		date.setMonth(date.getMonth()-1);
 		createCalendar(date);
-	}, false);
+	});
 
-	document.getElementById("next_btn").addEventListener("click", function() {
+	$next_btn.click(function() {
 		date.setMonth(date.getMonth()+1);
 		createCalendar(date);
-	}, false);
+	});
 }

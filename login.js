@@ -18,6 +18,5 @@ function login() {
 			createButtons();
 			let date = new Date();
 			createCalendar(date);
-			nextPrevMonth(date);
 		});
 }
