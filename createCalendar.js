@@ -1,8 +1,8 @@
 function createCalendar(date) {
 	$( ".calendar ").remove();
-	let $calendar = $("<div>", {'class':'calendar'});
-	
+	$( ".modify_event" ).remove();
 
+	let $calendar = $("<div>", {'class':'calendar'});
 
 	$calendar.append($("<h3>", {text:"These are your events for the month:"}));
 	let days_in_month = getNumberOfDays(date);
@@ -29,7 +29,6 @@ function createCalendar(date) {
 	}
 	
 	$calendar.append($table);
-
 
 	for (let day = 1; day <= days_in_month; day++) {
 	 	date = new Date(year,month,day);
@@ -145,35 +144,4 @@ function nextPrevMonth(date) {
 		date.setMonth(date.getMonth()+1);
 		createCalendar(date);
 	}, false);
-}
-
-function createModifyEventForm(event_id) {
-	
-	$( ".modify_event" ).remove();
-	let $modify_event = $("<div>", {"class":"modify_event"});
-	$modify_event.append($("<br>"));
-	
-	let $header = $("<h3>", {text:"Modify Event Form"});
-	$modify_event.append($header);
-	$modify_event.append("Title: ");
-	let $title_field = $("<input>", {type:"text", id:"new_title"});
-	$modify_event.append($title_field);
-	$modify_event.append("<br>");
-
-	$modify_event.append("Date: ");
-	let $date_field = $("<input>", {type:"date", id:"new_date"});
-	$modify_event.append($date_field);
-	$modify_event.append("<br>");
-
-	$modify_event.append("Time: ");
-	let $time_field = $("<input>", {type:"time", id:"new_time"});
-	$modify_event.append($time_field);
-	$modify_event.append("<br>");
-
-	let $modify_event_btn = $("<button>", {class:"button", type:"submit", id:"modify_event_btn", text:"Modify Event"});
-	$modify_event.append($modify_event_btn);
-	$(document.body).append($modify_event);
-	$modify_event_btn.click(function() {
-		modifyEvent(event_id);
-	});
 }
