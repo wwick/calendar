@@ -14,9 +14,11 @@ function modifyEvent(event_id) {
 	.then(response => response.json())
 	.then(data => {
 		console.log(data.success ? "Event added" : "Event not added");
-		let year = date.substring(0,5);
-		let month = date.substring(6,8);
-		createCalendar(new Date(year,month));
+		let year = date.substring(0,4);
+		let month = date.substring(6,7);
+		console.log(month);
+		console.log(year);
+		createCalendar(new Date(year,month-1));
 	}).catch(error => console.log(error));
 
 }
