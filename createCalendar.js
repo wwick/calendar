@@ -5,8 +5,9 @@ function createCalendar(date) {
 	$( ".modify_event" ).remove();
 
 	let $calendar = $("<div>", {'class':'calendar'});
-	$(document.body).append($calendar);
-	nextPrevMonth(date);
+	//$(document.body).append($calendar);
+	let $buttons = nextPrevMonth(date);
+	$calendar.append($buttons);
 
 	let days_in_month = getNumberOfDays(date);
     let month = date.getMonth();
@@ -14,7 +15,7 @@ function createCalendar(date) {
 
 	let month_name = getMonthName(month);
 	
-	$calendar.append($("<h3>", {text:"These are your events for the month of " + month_name + " " + year}));
+	$calendar.append($("<h1>", {text:month_name + " " + year}));
 	$calendar.append(nextPrevMonth(date));
 	$calendar.append("<br>");
 
@@ -37,6 +38,7 @@ function createCalendar(date) {
 	}
 	
 	$calendar.append($table);
+	$(document.body).append($calendar);
 
 	for (let day = 1; day <= days_in_month; day++) {
 	 	date = new Date(year,month,day);
