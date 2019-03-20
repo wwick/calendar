@@ -139,13 +139,14 @@ function getMonthName(month) {
 function fetchEvents(date) {
 	let date_string = getDateString(date);
 	const php_path = "get_events.php";
-	const data = { 'date':date_string }
+	const data = { 'date':date_string };
+	const day_number = date.getDate();
 	fetch(php_path, {method: "POST", body: JSON.stringify(data)})
 		.then(response => response.json())
 		.then(function(events) {
 			let $day = $( "#"+date_string );			
 			$day.empty();
-			$day.text(date_string);
+			$day.text(day_number);
 			for (i in events) {
 				let event_id = events[i].event_id;
 				let event_text = events[i].title + " at " + events[i].time;
