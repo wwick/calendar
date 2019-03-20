@@ -1,7 +1,7 @@
 # Calendar (Module 5)
 
 
-# Links
+# Group Links
 Elijah Pena (455281) - http://ec2-52-15-187-19.us-east-2.compute.amazonaws.com/~elijahpena/spring2019-module5-group-455281-467000/calendar.php
 
 Will Wick (467000) - http://ec2-52-14-191-6.us-east-2.compute.amazonaws.com/~wwick/git/spring2019-module5-group-455281-467000/calendar.php
@@ -30,6 +30,23 @@ Will Wick (467000) - http://ec2-52-14-191-6.us-east-2.compute.amazonaws.com/~wwi
 ### Development
 
 The only plugin used for javascript was JQuery
+
+
+
+### Will Wick Individual
+
+http://ec2-52-15-187-19.us-east-2.compute.amazonaws.com/~wwick/git/spring2019-module5-individual-455281/calc.html
+
+http://ec2-52-15-187-19.us-east-2.compute.amazonaws.com/~wwick/git/spring2019-module5-individual-455281/weather.html
+
+### Elijah Pena Individual
+
+
+http://ec2-52-15-187-19.us-east-2.compute.amazonaws.com/~elijahpena/spring2019-module5-individual-455281/calculator.html
+
+http://ec2-52-15-187-19.us-east-2.compute.amazonaws.com/~elijahpena/spring2019-module5-individual-455281/weather.html
+
+
 
 
 
