@@ -11,15 +11,20 @@ $title = $json_obj["title"];
 $date = $json_obj["date"];
 $time = $json_obj["time"];
 $shared_user = $json_obj["shared_user"];
+$group_num = $json_obj["group_num"];
 
 if ($shared_user === ""){
-	$stmt = $mysqli->prepare("insert into events (user_id, title, date, time) values ('$user_id', '$title', '$date', '$time')");
-	if(!$stmt){
-		printf("Query Prep Failed: %s\n", $mysqli->error);
-		echo json_encode(array(
-			"success" => false
-		));
-		exit;
+	if ($group_num === "") {
+		$stmt = $mysqli->prepare("insert into events (user_id, title, date, time) values ('$user_id', '$title', '$date', '$time')");
+		if(!$stmt){
+			printf("Query Prep Failed: %s\n", $mysqli->error);
+			echo json_encode(array(
+				"success" => false
+			));
+			exit;
+		} 
+	} else {
+		$stmt = $mysqli->prepare("insert into events (user_id, title, date, time, group_id) values ('$user_id', '$title', '$date', '$time', '$group_num')");
 	}
 
 	$stmt->execute();
@@ -33,15 +38,19 @@ if ($shared_user === ""){
 		$shared_user = $shared_user_id;
 	}
 
-	$stmt = $mysqli->prepare("insert into events (user_id, title, date, time, shared_users) values ('$user_id', '$title', '$date', '$time', '$shared_user')");
-	if(!$stmt){
-		printf("Query Prep Failed: %s\n", $mysqli->error);
-		echo json_encode(array(
-			"success" => false
-		));
-		exit;
-	}
+	if ($group_num ==="") {
+		$stmt = $mysqli->prepare("insert into events (user_id, title, date, time, shared_users) values ('$user_id', '$title', '$date', '$time', '$shared_user')");
+		if(!$stmt){
+			printf("Query Prep Failed: %s\n", $mysqli->error);
+			echo json_encode(array(
+				"success" => false
+			));
+			exit;
+		}
+	} else {
+		$stmt = $mysqli->prepare("insert into events (user_id, title, date, time, shared_users, group_id) values ('$user_id', '$title', '$date', '$time', '$shared_user', '$group_num')");
 
+	}
 	$stmt->execute();
 	$stmt->close();
 

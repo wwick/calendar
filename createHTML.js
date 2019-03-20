@@ -61,9 +61,14 @@ function createButtons() {
 	$create_event.append($time_field);
 	$create_event.append("<br>");
 
-	$create_event.append("Shared User: ");
+	$create_event.append("Share Event with User: ");
 	let $shared_user = $("<input>", {type:"text", id:"shared_user"});
 	$create_event.append($shared_user);
+	$create_event.append("<br>");
+
+	$create_event.append("Share Event with Group: ");
+	let $shared_group = $("<input>", {type:"number", id:"group_num", min:"0", step:"1"});
+	$create_event.append($shared_group);
 	$create_event.append("<br>");
 
 	let $event_btn = $("<button>", {class:"button", type:"submit", id:"event_btn", text:"Create Event"});
@@ -77,7 +82,7 @@ function createButtons() {
 
 	$share = $("<div>");
 
-	$share.append("User: ");
+	$share.append("Share Calendar with User: ");
 	let $share_field = $("<input>", {type:"text", id:"cal_user"});
 	$share.append($share_field);
 	$share.append("<br>");
