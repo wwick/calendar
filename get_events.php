@@ -27,12 +27,15 @@ while($stmt->fetch()){
 	$ids[] = $id;
 }
 $stmt->close();
-
+if(count($ids) > 0){
 $ids = implode(",", $ids);
 $ids = $ids.",{$user_id}";
 $ids = "(".$ids.")";
+} else {
+	$ids = "(".$user_id.")";
+}
 
-$result = $mysqli->query("SELECT title, time, event_id FROM events WHERE user_id in {$ids} AND date=\"{$date}\" ORDER BY time");
+$result = $mysqli->query("SELECT title, time, event_id FROM events WHERE (user_id in {$ids} or shared_users={$user_id}) AND date=\"{$date}\" ORDER BY time");
 $rows = array();
 
 while($row = $result->fetch_assoc()) {
