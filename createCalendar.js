@@ -1,6 +1,9 @@
 function createCalendar(date) {
 	$( ".calendar ").remove();
 	let $calendar = $("<div>", {'class':'calendar'});
+	
+
+
 	$calendar.append($("<h3>", {text:"These are your events for the month:"}));
 	let days_in_month = getNumberOfDays(date);
     $(document.body).append($calendar);
