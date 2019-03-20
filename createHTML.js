@@ -162,12 +162,12 @@ function createButtons() {
 
 	// gets rid of session variables and returns to login screen
 	$logout_btn.click(function() {
-		fetch(abort.php)
+		fetch("abort.php")
 			.then(response => response.json())
 			.catch(function(error) {
 				console.log(error);
 			});
-		$(document.body).remove();
+		$(document.body).empty();
 		checkLogin();
 	});
 
