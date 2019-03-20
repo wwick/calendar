@@ -1,11 +1,12 @@
 function modifyEvent(event_id) {
 	
 	console.log("modifying event " + event_id);
-	const title = $( "#new_event" ).val();
+	const title = $( "#new_title" ).val();
 	const date = $( "#new_date" ).val();
 	const time = $( "#new_time" ).val() + ":00";
 
-	const data = { 'title': title, 'time': time, 'date': date, 'event_id':event_id }
+	const data = { 'title': title, 'time': time, 'date': date, 'event_id':event_id };
+	console.log(JSON.stringify(data));
 	fetch("modifyEvent.php", {
 		method: 'POST',
 		body: JSON.stringify(data),
