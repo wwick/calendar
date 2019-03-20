@@ -92,6 +92,17 @@ function createButtons() {
 	$share.append($share_btn);
 	$(document.body).append($share);
 
+	$join_group = $("<div>");
+	$join_group.append("Group ID: ");
+	let $group_field = $("<input>", {type:"number", id:"group_num", min:"0", step:"1"});
+	$join_group.append($group_field);
+	$join_group.append("<br>");
+
+	let $join_btn = $("<button>", {class:"button", type: "submit", id:"join_btn", text:"Join Group"});
+	$join_group.append($join_btn);
+	$join_group.append("<br>");
+	$(document.body).append($join_group);
+
 	let $logout = $("<div>");
 	let $logout_btn = $("<a>", {class:"button", text:"logout", href:"abort.php"});
 	$logout.append($logout_btn);
