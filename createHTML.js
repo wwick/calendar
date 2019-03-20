@@ -2,6 +2,7 @@ function createLogin() {
 
 	let $login = $('<div>', {'class': 'login'});
 
+	// form for creating a new user
 	$login.append("Username: ");
 	let $new_user_field = $("<input>", {type:'text', id:'new_user'});
 	$login.append($new_user_field);
@@ -22,6 +23,7 @@ function createLogin() {
 	$login.append("<br>");
 	$login.append("<br>");
 
+	// form for logging in as an existing user
 	$login.append("Username: ");
 	let $user_field = $("<input>", {type:'text', id:'user'});
 	$login.append($user_field);
@@ -37,12 +39,12 @@ function createLogin() {
 	$login.append($login_button);
 
 	$(document.body).html($login);
-
-	document.getElementById("create_btn").addEventListener("click", createUser, false);
+	$create_user_button.click(createUser);
 
 }
 
-function createModifyEventForm(event_id, date) {
+// creates a form by which to edit or delete events
+function createModifyEventForm(event_id, date, time, title) {
 	
 	$( ".modify_event" ).remove();
 	let $modify_event = $("<div>", {"class":"modify_event"});
@@ -51,19 +53,19 @@ function createModifyEventForm(event_id, date) {
 	let $header = $("<h3>", {text:"Modify Event Form"});
 	$modify_event.append($header);
 	$modify_event.append("Title: ");
-	let $title_field = $("<input>", {type:"text", id:"new_title"});
+	let $title_field = $("<input>", {type:"text", id:"new_title", value:title});
 	$modify_event.append($title_field);
 	$modify_event.append("<br>");
 
-	date = getDateString(date);
+	let date_string = getDateString(date);
 
-	$modify_event.append("Date: ");
-	let $date_field = $("<input>", {type:"date", id:"new_date", value:date});
+	$modify_event.append("Date (yyyy-mm-dd): ");
+	let $date_field = $("<input>", {type:"text", id:"new_date", value:date_string});
 	$modify_event.append($date_field);
 	$modify_event.append("<br>");
 
-	$modify_event.append("Time: ");
-	let $time_field = $("<input>", {type:"time", id:"new_time"});
+	$modify_event.append("Time (hh:mm:ss): ");
+	let $time_field = $("<input>", {type:"text", id:"new_time", value:time});
 	$modify_event.append($time_field);
 	$modify_event.append("<br>");
 
@@ -87,21 +89,21 @@ function createButtons() {
 	//create event form
 	$create_event = $("<div>");
 
-	let $create_header = $("<h3>", {text:"Create Event Form"});
-	$create_event.append($create_header);
+	let $create_event_header = $("<h3>", {text:"Create Event"});
+	$create_event.append($create_event_header);
 
 	$create_event.append("Title: ");
 	let $title_field = $("<input>", {type:"text", id:"event"});
 	$create_event.append($title_field);
 	$create_event.append("<br>");
 
-	$create_event.append("Date: ");
-	let $date_field = $("<input>", {type:"text", id:"date", value:"yyyy-mm-dd"});
+	$create_event.append("Date (yyyy-mm-dd): ");
+	let $date_field = $("<input>", {type:"text", id:"date"});
 	$create_event.append($date_field);
 	$create_event.append("<br>");
 
-	$create_event.append("Time: ");
-	let $time_field = $("<input>", {type:"text", id:"time", value:"hh-mm-ss"});
+	$create_event.append("Time (hh:mm:ss): ");
+	let $time_field = $("<input>", {type:"text", id:"time"});
 	$create_event.append($time_field);
 	$create_event.append("<br>");
 
@@ -141,6 +143,7 @@ function createButtons() {
 	$join_group = $("<div>");
 
 	let $join_group_header = $("<h3>", {text:"Join Group"});
+	$join_group.append($join_group_header);
 	$join_group.append("Group ID: ");
 	let $group_field = $("<input>", {type:"number", id:"join_group", min:"0", step:"1"});
 	$join_group.append($group_field);
@@ -154,22 +157,17 @@ function createButtons() {
 
 	//logout button
 	let $logout = $("<div>");
-	$logout.append("<br>");
+	let $logout_header = $("<h3>", {text:"Logout"});
+	$logout.append($logout_header);
 	let $logout_btn = $("<button>", {class:"button", text:"Logout"});
 	$logout.append($logout_btn);
 	$(document.body).append($logout);
-
-
-	// gets rid of session variables and returns to login screen
 	$logout_btn.click(function() {
-		fetch("abort.php")
-			.then(response => response.json())
-			.catch(function(error) {
-				console.log(error);
-			});
+		fetch("abort.php");
 		$(document.body).empty();
 		checkLogin();
 	});
+
 
 	// adds other event listeners
 	document.getElementById("event_btn").addEventListener("click", createEvent, false);
