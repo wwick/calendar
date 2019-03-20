@@ -19,5 +19,5 @@ function login() {
 			createButtons();
 			let date = new Date();
 			createCalendar(date);
-		});
+		}).catch(error => console.log(error));
 }
