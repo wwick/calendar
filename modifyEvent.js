@@ -6,14 +6,13 @@ function modifyEvent(event_id, operator) {
 	const time = $( "#new_time" ).val();
 	const token = document.getElementById("token").getAttribute("value");
 
-	/*if (!validDate(date)) {
+	if (!validDate(date)) {
 		return;
 	} else if (!validTime(time)) {
 		return;
 	} else if (!validTitle(title)) {
 		return
-	}*/
-	console.log(token);
+	}
 
 	const data = { 'title': title, 'time': time, 'date': date, 'event_id':event_id, 'token':token, 'operator':operator };
 	fetch("modifyEvent.php", {

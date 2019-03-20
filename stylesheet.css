@@ -28,4 +28,15 @@ body {
     border: 1px solid black;
 }
 
+.button{
+    border: 1px solid black;
+    cursor: pointer;
+    padding: 4px 12px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 4px 2px;
+}
+
 
