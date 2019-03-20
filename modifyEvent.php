@@ -16,9 +16,9 @@ $json_obj = json_decode($json_str, true);
 $title = $json_obj["title"];
 $date = $json_obj["date"];
 $time = $json_obj["time"];
-$event_id = $jsob_obj["id"];
+$event_id = $jsob_obj["event_id"];
 
-$stmt = $mysqli->prepare("UPDATE events SET title=[{$title}], date=[{$date}], time=[{$time}] WHERE user_id={$user_id} AND event_id={$event_id}");
+$stmt = $mysqli->prepare("UPDATE events SET title=\"{$title}\", date=\"{$date}\", time=\"{$time}\" WHERE user_id=\"{$user_id}\" AND event_id=\"{$event_id}\"");
 if(!$stmt){
 	echo json_encode(array(
 		"success" => false

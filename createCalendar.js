@@ -123,6 +123,8 @@ function fetchEvents(date_string) {
 			console.log(error);
 		});
 }
+
+
 function nextPrevMonth(date) {
 	let $buttons = $("<div>");
 	let $prev_btn = $("<button>", {class:"button", type:"submit", id:"prev_btn", text:"Previous Month"});
@@ -141,4 +143,31 @@ function nextPrevMonth(date) {
 		date.setMonth(date.getMonth()+1);
 		createCalendar(date);
 	}, false);
+}
+
+function modifyEventForm(event_id) {
+
+	let $modify_event = $("<div>");
+
+	$modify_event.append("Title: ");
+	let $title_field = $("<input>", {type:"text", id:"new_title"});
+	$modify_event.append($title_field);
+	$modify_event.append("<br>");
+
+	$modify_event.append("Date: ");
+	let $date_field = $("<input>", {type:"date", id:"new_date"});
+	$modify_event.append($date_field);
+	$modify_event.append("<br>");
+
+	$modify_event.append("Time: ");
+	let $time_field = $("<input>", {type:"time", id:"new_time"});
+	$modify_event.append($time_field);
+	$modify_event.append("<br>");
+
+	let $modify_event_btn = $("<button>", {class:"button", type:"submit", id:"modify_event_btn", text:"Modify Event"});
+	$modify_event.append($modify_event_btn);
+	$(document.body).append($modify_event);
+	$modify_event_btn.click(function() {
+		modifyEvent(event_id);
+	});
 }
