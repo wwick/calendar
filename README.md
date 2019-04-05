@@ -8,7 +8,7 @@ http://ec2-52-14-191-6.us-east-2.compute.amazonaws.com/~wwick/git/spring2019-mod
 # Creative Additions!
  - Can share you calendar with other users
  - When creating an event, you can give the event a group number to share with others who wish to belong to that group
- - Neither of these are specifc enough? Share a specific event with a specific user
+ - Neither of these are specific enough? Share a specific event with a specific user
  - You can leave an join a group at will
  - Sharing is not necessary to create an event
  
@@ -25,5 +25,4 @@ http://ec2-52-14-191-6.us-east-2.compute.amazonaws.com/~wwick/git/spring2019-mod
 ### Development
 
 The only plugin used for javascript was JQuery
-
 
