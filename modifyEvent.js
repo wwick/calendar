@@ -1,11 +1,9 @@
 function modifyEvent(event_id, operator) {
 
-	// console.log("modifying event " + event_id);
-	// const title = $( "#new_title" ).val();
-	// const date = $( "#new_date" ).val();
-	// const time = $( "#new_time" ).val();
-	// const token = document.getElementById("token").getAttribute("content");
-	// console.log(token)
+	const title = ""; // $( "#new_title" ).val();
+	const date = ""; // $( "#new_date" ).val();
+	const time = ""; // $( "#new_time" ).val();
+	const token = document.getElementById("token").getAttribute("content");
 
 	// if (!validDate(date)) {
 	// 	return;
