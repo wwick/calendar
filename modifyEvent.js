@@ -24,9 +24,10 @@ function modifyEvent(event_id, operator) {
 		.then(response => response.json())
 		.then(data => {
 			console.log(data.success ? "Event added" : "Event not added");
-			let year = date.substring(0,4);
-			let month = date.substring(6,7);
-			createCalendar(new Date(year,month-1));
+			// let year = date.substring(0,4);
+			// let month = date.substring(6,7);
+			// createCalendar(new Date(year,month-1));
+			createCalendar(new Date());
 
 		}).catch(error => console.log(error));
 
