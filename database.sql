@@ -7,7 +7,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `user` (`user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
-events | CREATE TABLE `events` (
+CREATE TABLE `events` (
   `event_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` smallint(5) unsigned NOT NULL,
   `title` varchar(50) NOT NULL,
@@ -27,4 +27,4 @@ CREATE TABLE `viewable` (
   KEY `owner_user_id` (`owner_user_id`),
   CONSTRAINT `viewable_ibfk_1` FOREIGN KEY (`owner_user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `viewable_ibfk_2` FOREIGN KEY (`shared_user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
