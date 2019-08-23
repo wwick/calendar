@@ -107,15 +107,15 @@ function createButtons() {
 	$create_event.append($time_field);
 	$create_event.append("<br>");
 
-	$create_event.append("Share Event with User (Optional): ");
-	let $shared_user = $("<input>", {type:"text", id:"shared_user"});
-	$create_event.append($shared_user);
-	$create_event.append("<br>");
+	// $create_event.append("Share Event with User (Optional): ");
+	// let $shared_user = $("<input>", {type:"text", id:"shared_user"});
+	// $create_event.append($shared_user);
+	// $create_event.append("<br>");
 
-	$create_event.append("Share Event with Group (Optional): ");
-	let $shared_group = $("<input>", {type:"number", id:"group_num", min:"0", max:"65000", step:"1"});
-	$create_event.append($shared_group);
-	$create_event.append("<br>");
+	// $create_event.append("Share Event with Group (Optional): ");
+	// let $shared_group = $("<input>", {type:"number", id:"group_num", min:"0", max:"65000", step:"1"});
+	// $create_event.append($shared_group);
+	// $create_event.append("<br>");
 
 	let $event_btn = $("<button>", {class:"button", type:"submit", id:"event_btn", text:"Create Event"});
 	$create_event.append($event_btn);
@@ -136,7 +136,7 @@ function createButtons() {
 	let $share_btn = $("<button>", {class:"button", type:"submit", id:"share_btn", text:"Share with User"});
 
 	$share.append($share_btn);
-	$(document.body).append($share);
+	// $(document.body).append($share);
 
 
 	//join group form
@@ -152,13 +152,13 @@ function createButtons() {
 	let $join_btn = $("<button>", {class:"button", type: "submit", id:"join_btn", text:"Join Group"});
 	$join_group.append($join_btn);
 	$join_group.append("<br>");
-	$(document.body).append($join_group);
+	// $(document.body).append($join_group);
 
 
 	//logout button
 	let $logout = $("<div>");
-	let $logout_header = $("<h3>", {text:"Logout"});
-	$logout.append($logout_header);
+	// let $logout_header = $("<h3>", {text:"Logout"});
+	// $logout.append($logout_header);
 	let $logout_btn = $("<button>", {class:"button", text:"Logout"});
 	$logout.append($logout_btn);
 	$(document.body).append($logout);
@@ -171,8 +171,8 @@ function createButtons() {
 
 	// adds other event listeners
 	document.getElementById("event_btn").addEventListener("click", createEvent, false);
-	document.getElementById("share_btn").addEventListener("click", shareCal, false);
-	document.getElementById("join_btn").addEventListener("click", joinGroup, false);
+	// document.getElementById("share_btn").addEventListener("click", shareCal, false);
+	// document.getElementById("join_btn").addEventListener("click", joinGroup, false);
 
 }
 
