@@ -155,7 +155,7 @@ function fetchEvents(date) {
 				let event_text = events[i].title + " at " + events[i].time;
 				let $event = $("<div>", {'class':'button', id:events[i].event_id, text:event_text});
 				$event.click(function() {
-				    createModifyEventForm(event_id,date,events[i].time,events[i].title);	
+				    createModifyEventForm(event_id);	
 				});
 				$day.append("<br>");
 				$day.append($event);

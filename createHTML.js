@@ -43,43 +43,15 @@ function createLogin() {
 }
 
 // creates a form by which to edit or delete events
-function createModifyEventForm(event_id, date, time, title) {
+function createModifyEventForm(event_id) {
 	
 	$( ".modify_event" ).remove();
 	let $modify_event = $("<div>", {"class":"modify_event"});
 	$modify_event.append($("<br>"));
-	
-	let $header = $("<h3>", {text:"Modify Event Form"});
-	$modify_event.append($header);
-	$modify_event.append("Title: ");
-	let $title_field = $("<input>", {type:"text", id:"new_title", value:title});
-	$modify_event.append($title_field);
-	$modify_event.append("<br>");
-
-	let date_string = getDateString(date);
-
-	$modify_event.append("Date (yyyy-mm-dd): ");
-	let $date_field = $("<input>", {type:"text", id:"new_date", value:date_string});
-	$modify_event.append($date_field);
-	$modify_event.append("<br>");
-
-	$modify_event.append("Time (hh:mm:ss): ");
-	let $time_field = $("<input>", {type:"text", id:"new_time", value:time});
-	$modify_event.append($time_field);
-	$modify_event.append("<br>");
-
-	let $modify_event_btn = $("<button>", {class:"button", type:"submit", id:"modify_event_btn", text:"Modify Event"});
-	$modify_event.append($modify_event_btn);
-
 	let $delete_btn = $("<button>", {class:"button", type:"submit", id:"delete_btn", text: "Delete Event"});
 	$modify_event.append($delete_btn);
-
-	$(document.body).append($modify_event);
-	$modify_event_btn.click(function() {
-		modifyEvent(event_id, "modify");
-	});
 	$delete_btn.click(function() {
-		modifyEvent(event_id, "delete");
+		modifyEvent(event_id);
 	});
 }
 
