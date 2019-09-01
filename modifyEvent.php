@@ -12,35 +12,35 @@ if (!isset($_SESSION['user'])) {
 }
 
 $user_id = $_SESSION["user"];
-// $server_token = $_SESSION["token"];
+$server_token = $_SESSION["token"];
 $json_str = file_get_contents('php://input');
 
 $json_obj = json_decode($json_str, true);
 
-// $title = $json_obj["title"];
-// $date = $json_obj["date"];
-// $time = $json_obj["time"];
+$title = $json_obj["title"];
+$date = $json_obj["date"];
+$time = $json_obj["time"];
 $event_id = $json_obj["event_id"];
-// $token = $json_obj["token"];
-// $operator = $json_obj["operator"];
+$token = $json_obj["token"];
+$operator = $json_obj["operator"];
 
-// if(!hash_equals($server_token, $token)){
-// 	echo json_encode(array(
-// 		"success" => false
-// 	));
-// 	exit;
-// }
-// if ($operator === "modify"){
-// 	$stmt = $mysqli->prepare("UPDATE events SET title=\"{$title}\", date=\"{$date}\", time=\"{$time}\" WHERE user_id=\"{$user_id}\" AND event_id=\"{$event_id}\"");
-// } else {
-// 	$stmt = $mysqli->prepare("delete from events where user_id={$user_id} and event_id={$event_id}");
-// }
-// if(!$stmt){
-// 	echo json_encode(array(
-// 		"success" => false
-// 	));
-// 	exit;
-// }
+if(!hash_equals($server_token, $token)){
+	echo json_encode(array(
+		"success" => false
+	));
+	exit;
+}
+if ($operator === "modify"){
+	$stmt = $mysqli->prepare("UPDATE events SET title=\"{$title}\", date=\"{$date}\", time=\"{$time}\" WHERE user_id=\"{$user_id}\" AND event_id=\"{$event_id}\"");
+} else {
+	$stmt = $mysqli->prepare("delete from events where user_id={$user_id} and event_id={$event_id}");
+}
+if(!$stmt){
+	echo json_encode(array(
+		"success" => false
+	));
+	exit;
+}
 
 $stmt = $mysqli->prepare("delete from events where user_id={$user_id} and event_id={$event_id}");
 

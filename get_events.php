@@ -18,37 +18,7 @@ $json_obj = json_decode($json_str, true);
 $date = $json_obj['date'];
 $user_id = $_SESSION['user'];
 
-$stmt = $mysqli->prepare("select owner_user_id from viewable where shared_user_id={$user_id}");
-$stmt->execute();
-$stmt->bind_result($id);
-$ids = array();
-
-while($stmt->fetch()){
-	$ids[] = $id;
-}
-$stmt->close();
-if(count($ids) > 0){
-$ids = implode(",", $ids);
-$ids = $ids.",{$user_id}";
-$ids = "(".$ids.")";
-} else {
-	$ids = "(".$user_id.")";
-}
-
-$stmt = $mysqli->prepare("select group_id from users where user_id={$user_id}");
-$stmt->execute();
-$stmt->bind_result($group_id);
-$stmt->fetch();
-$group = $group_id;
-$stmt->close();
-
-
-if (is_null($group)){
-$result = $mysqli->query("SELECT title, time, event_id FROM events WHERE (user_id in {$ids} or shared_users={$user_id}) AND date=\"{$date}\" ORDER BY time");
-
-} else {
-$result = $mysqli->query("SELECT title, time, event_id FROM events WHERE (user_id in {$ids} or shared_users={$user_id} or group_id={$group}) AND date=\"{$date}\" ORDER BY time");
-}
+$result = $mysqli->query("SELECT title, time, event_id FROM events WHERE user_id={$user_id} AND date=\"{$date}\" ORDER BY time");
 $rows = array();
 
 while($row = $result->fetch_assoc()) {

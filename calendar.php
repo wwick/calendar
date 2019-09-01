@@ -16,8 +16,6 @@
 		<script src="createUser.js"></script>
 		<script src="createEvent.js"></script>
 		<script src="modifyEvent.js"></script>
-		<script src="shareCal.js"></script>
-		<script src="joinGroup.js"></script>
 		<script src="validateInput.js"></script>
 	</head>
 	<body>

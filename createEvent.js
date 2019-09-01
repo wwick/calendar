@@ -13,10 +13,7 @@ function createEvent(){
 		return
 	}
 
-	const shared_user = ""; // document.getElementById("shared_user").value;
-	const group_num = ""; // document.getElementById("group_num").value;
-
-	const data = { 'title': title, 'date': date, 'time': time, 'shared_user': shared_user, 'group_num': group_num };
+	const data = { 'title': title, 'date': date, 'time': time};
 	fetch("createEvent.php", {
 		method: 'POST',
 		body: JSON.stringify(data),
