@@ -5,13 +5,13 @@ function createEvent(){
 
 	console.log(time);
 	if (!validDate(date)) {
-	//	return;
+		return;
 	}
 	if (!validTime(time)) {
-	//	return;
+		return;
 	}
 	if (!validTitle(title)) {
-	//	return
+		return
 	}
 
 	const data = { 'title': title, 'date': date, 'time': time};

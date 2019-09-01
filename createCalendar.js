@@ -152,7 +152,7 @@ function fetchEvents(date) {
 			$day.text(day_number);
 			for (i in events) {
 				let event_id = events[i].event_id;
-				let event_text = events[i].title + " at " + events[i].time;
+				let event_text = events[i].title + " at " + events[i].time.slice(0,-3);
 				let $event = $("<div>", {'class':'button', id:events[i].event_id, text:event_text});
 				$event.click(function() {
 				    createModifyEventForm(event_id);	
