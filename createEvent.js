@@ -3,14 +3,15 @@ function createEvent(){
 	const date = document.getElementById("date").value;
 	const time = document.getElementById("time").value;
 
+	console.log(time);
 	if (!validDate(date)) {
-		return;
+	//	return;
 	}
 	if (!validTime(time)) {
-		return;
+	//	return;
 	}
 	if (!validTitle(title)) {
-		return
+	//	return
 	}
 
 	const data = { 'title': title, 'date': date, 'time': time};
