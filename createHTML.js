@@ -50,6 +50,7 @@ function createModifyEventForm(event_id) {
 	$modify_event.append($("<br>"));
 	let $delete_btn = $("<button>", {class:"button", type:"submit", id:"delete_btn", text: "Delete Event"});
 	$modify_event.append($delete_btn);
+	$(document.body).append($modify_event)
 	$delete_btn.click(function() {
 		modifyEvent(event_id);
 	});
@@ -83,12 +84,8 @@ function createButtons() {
 	$(document.body).append($create_event);
 
 	//logout button
-	let $logout = $("<div>");
-	// let $logout_header = $("<h3>", {text:"Logout"});
-	// $logout.append($logout_header);
 	let $logout_btn = $("<button>", {class:"button", text:"Logout"});
-	$logout.append($logout_btn);
-	$(document.body).append($logout);
+	$(document.body).append($logout_btn);
 	$logout_btn.click(function() {
 		fetch("abort.php");
 		$(document.body).empty();
