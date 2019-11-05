@@ -9,14 +9,14 @@
 		<title>Calendar</title>
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="login.js"></script>
-		<script src="createHTML.js"></script>
-		<script src="createCalendar.js"></script>
-		<script src="checkLogin.js"></script>
-		<script src="createUser.js"></script>
-		<script src="createEvent.js"></script>
-		<script src="modifyEvent.js"></script>
-		<script src="validateInput.js"></script>
+		<script src="src/login/login.js"></script>
+		<script src="src/content/pageElements.js"></script>
+		<script src="src/content/createCalendar.js"></script>
+		<script src="src/login/checkLogin.js"></script>
+		<script src="src/login/createUser.js"></script>
+		<script src="src/requests/createEvent.js"></script>
+		<script src="src/requests/modifyEvent.js"></script>
+		<script src="src/misc/validateInput.js"></script>
 	</head>
 	<body>
 
